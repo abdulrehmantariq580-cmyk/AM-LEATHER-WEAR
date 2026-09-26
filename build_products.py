@@ -371,8 +371,8 @@ def main():
                         <p>{cat}</p>
                     </div>
                     <div class="meta-item">
-                        <h4>Delivery</h4>
-                        <p id="liveDelivery">{delivery}</p>
+                        <h4>Delivery Charges</h4>
+                        <p id="liveDelivery">Rs. {delivery}</p>
                     </div>
                 </div>
                 
@@ -423,7 +423,15 @@ def main():
                             if (lSizes) document.getElementById('liveSizes').innerText = lSizes;
                             if (lCat) document.getElementById('liveCategory').innerText = lCat;
                             if (lMat) document.getElementById('liveMaterial').innerText = lMat;
-                            if (lDelivery) document.getElementById('liveDelivery').innerText = lDelivery;
+                            
+                            if (lDelivery !== undefined) {{
+                                let deliveryText = lDelivery;
+                                if (!isNaN(lDelivery) && lDelivery.trim() !== '') {{
+                                    deliveryText = 'Rs. ' + lDelivery;
+                                }}
+                                document.getElementById('liveDelivery').innerText = deliveryText;
+                            }}
+                            
                             if (lImg && lImg !== "") document.getElementById('liveMainImage').src = lImg;
 
                             // Save live data for the Add to Cart button
