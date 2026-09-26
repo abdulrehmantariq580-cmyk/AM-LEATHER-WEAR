@@ -2068,12 +2068,14 @@
             const price = parseFloat(product['Regular Price (Rs.)'] || product['price']) || 0;
             const rawImage = product['Main Product Image  (Only 1)'] || product['image'] || '';
             const image = convertDriveLink(rawImage) || 'media/product_1.webp';
+            let shipping = product['Shipping Fee (Rs.)'] || 0;
+            shipping = parseFloat(shipping) || 0;
 
             const existingItem = cartArray.find(item => item.title === title);
             if(existingItem) {
                 existingItem.quantity += 1;
             } else {
-                cartArray.push({ title, price, image, quantity: 1 });
+                cartArray.push({ title, price, image, shipping, quantity: 1 });
             }
 
             saveAndSyncCart();

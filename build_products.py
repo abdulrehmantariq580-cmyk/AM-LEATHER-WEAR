@@ -122,17 +122,20 @@ def main():
             if(subtotalText) subtotalText.innerText = `Rs. ${total.toLocaleString()}`;
         }
         
-        function addToCart(fallbackTitle, fallbackPrice, fallbackImage) {
+        function addToCart(fallbackTitle, fallbackPrice, fallbackImage, fallbackShipping) {
             // Use live data if available, otherwise use fallback hardcoded data
             const title = liveProductData ? liveProductData.title : fallbackTitle;
             const price = parseFloat(liveProductData ? liveProductData.price : fallbackPrice) || 0;
             const image = liveProductData ? liveProductData.image : fallbackImage;
+            let shipping = liveProductData ? liveProductData.shipping : fallbackShipping;
+            
+            shipping = parseFloat(shipping) || 0;
 
             const existingItem = cartArray.find(item => item.title === title);
             if(existingItem) {
                 existingItem.quantity += 1;
             } else {
-                cartArray.push({ title, price, image, quantity: 1 });
+                cartArray.push({ title, price, image, shipping, quantity: 1 });
             }
             localStorage.setItem('am_cart', JSON.stringify(cartArray));
             updateCartUI();
@@ -373,7 +376,7 @@ def main():
                     </div>
                 </div>
                 
-                <button class="add-to-cart-btn" onclick="addToCart('{title}', '{price}', '{image_url}')">Add to Cart</button>
+                <button class="add-to-cart-btn" onclick="addToCart('{title}', '{price}', '{image_url}', '{delivery}')">Add to Cart</button>
                 
                 <button class="whatsapp-share-btn" onclick="window.open('https://wa.me/?text=Check out this premium ' + encodeURIComponent(document.getElementById('liveTitle').innerText) + ' from A.M LEATHER WEAR: ' + encodeURIComponent(window.location.href), '_blank')">
                     <i class="fab fa-whatsapp"></i> Share on WhatsApp
@@ -427,7 +430,8 @@ def main():
                             liveProductData = {{
                                 title: lTitle || '{title}',
                                 price: lPrice || '{price}',
-                                image: lImg || '{image_url}'
+                                image: lImg || '{image_url}',
+                                shipping: lDelivery || '{delivery}'
                             }};
                         }}
                     }}

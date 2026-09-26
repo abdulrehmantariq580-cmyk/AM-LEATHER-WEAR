@@ -2136,10 +2136,12 @@
             container.style.gridTemplateColumns = "";
 
             let subtotal = 0;
+            let shippingCost = 0;
             let itemsHtml = '';
             cartArray.forEach(item => {
                 const itemTotal = item.price * item.quantity;
                 subtotal += itemTotal;
+                shippingCost += (item.shipping || 0) * item.quantity;
                 itemsHtml += `
                     <div class="summary-item">
                         <img src="${item.image}" alt="${item.title}">
@@ -2152,11 +2154,9 @@
                 `;
             });
 
-            const isFreeShipping = subtotal >= 5000;
-            const shippingCost = isFreeShipping ? 0 : 250;
             const grandTotal = subtotal + shippingCost;
             
-            const shippingText = isFreeShipping ? '<span>Free</span>' : '<span>Rs. 250</span>';
+            const shippingText = shippingCost === 0 ? '<span>Free</span>' : `<span>Rs. ${shippingCost.toLocaleString()}</span>`;
 
             container.innerHTML = `
                 <!-- Left Form Column -->
@@ -2273,6 +2273,7 @@
             const paymentMethod = document.querySelector('input[name="paymentMethod"]:checked').value;
 
             let subtotal = 0;
+            let shippingCost = 0;
             let itemsText = '';
             
             function slugify(text) {
@@ -2284,6 +2285,7 @@
             cartArray.forEach((item, idx) => {
                 const itemTotal = item.price * item.quantity;
                 subtotal += itemTotal;
+                shippingCost += (item.shipping || 0) * item.quantity;
                 
                 let origin = window.location.origin;
                 // Fallback for local testing (file:// protocol)
@@ -2297,8 +2299,7 @@
 `;
             });
 
-            const shippingCost = subtotal >= 5000 ? 0 : 250;
-            const shippingStr = shippingCost === 0 ? "FREE" : "Rs. 250";
+            const shippingStr = shippingCost === 0 ? "FREE" : `Rs. ${shippingCost.toLocaleString()}`;
             const grandTotal = subtotal + shippingCost;
 
             const message = 
