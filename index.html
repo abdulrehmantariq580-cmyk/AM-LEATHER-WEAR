@@ -2330,11 +2330,11 @@
                 let sliderHTML = '';
                 let catalogHTML = '';
 
-                // First 5 products for 3D Slider
-                const sliderProducts = products.slice(0, 5);
+                // Last 5 products in reverse order for 3D Slider (Newest)
+                const sliderProducts = products.slice(-5).reverse();
                 
-                // Last 8 products in reverse order for Catalog
-                const catalogProducts = products.slice(-8).reverse();
+                // First 8 products for Catalog (Oldest/Original)
+                const catalogProducts = products.slice(0, 8);
 
                 // 1. Render 3D Slider
                 sliderProducts.forEach((product) => {
