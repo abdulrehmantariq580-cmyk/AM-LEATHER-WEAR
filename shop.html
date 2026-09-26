@@ -1799,9 +1799,16 @@
             let total = 0;
             cartArray.forEach((item, idx) => {
                 total += (item.price * item.quantity);
+                
+                let finalImg = item.image;
+                if (finalImg && finalImg.startsWith('../')) finalImg = finalImg.substring(3);
+                if (finalImg && !finalImg.startsWith('http') && window.location.pathname.includes('/products/')) {
+                    finalImg = '../' + finalImg;
+                }
+
                 html += `
                     <div class="cart-item">
-                        <img src="${item.image}" alt="${item.title}">
+                        <img src="${finalImg}" alt="${item.title}">
                         <div class="cart-item-details">
                             <div class="cart-item-title">${item.title}</div>
                             <div class="cart-item-price">Rs. ${item.price} x ${item.quantity}</div>
