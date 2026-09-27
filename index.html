@@ -1957,6 +1957,49 @@
             initForms();
         });
 
+        // --- Dynamic Categories Generator ---
+        function populateCategories(products) {
+            const uniqueCategories = [];
+            products.forEach(p => {
+                const cat = (p['Product Category'] || p['Category'] || p['category'] || '').trim();
+                if (cat && !uniqueCategories.includes(cat)) {
+                    uniqueCategories.push(cat);
+                }
+            });
+            
+            // 1. Update Desktop Nav
+            const desktopNavUl = document.querySelector('.desktop-nav ul');
+            if (desktopNavUl) {
+                let html = '<li><a href="shop.html?category=all">Shop All</a></li>';
+                uniqueCategories.forEach(cat => {
+                    html += '<li><a href="shop.html?category=' + encodeURIComponent(cat) + '">' + cat + '</a></li>';
+                });
+                desktopNavUl.innerHTML = html;
+            }
+
+            // 2. Update Mobile Submenu
+            const mobileSubmenu = document.getElementById('mobileSubmenu');
+            if (mobileSubmenu) {
+                let html = '';
+                uniqueCategories.forEach(cat => {
+                    html += '<li><a href="shop.html?category=' + encodeURIComponent(cat) + '" onclick="closeDrawers()"><i class="fas fa-circle"></i> ' + cat + '</a></li>';
+                });
+                mobileSubmenu.innerHTML = html;
+            }
+
+            // 3. Update Footer
+            const footerLinks = document.querySelectorAll('.footer-col ul, .shop-footer-col ul');
+            footerLinks.forEach(ul => {
+                if(ul.innerHTML.includes('Leather Jackets') || ul.innerHTML.includes('Wallets')) {
+                    let html = '';
+                    uniqueCategories.forEach(cat => {
+                        html += '<li><a href="shop.html?category=' + encodeURIComponent(cat) + '">' + cat + '</a></li>';
+                    });
+                    ul.innerHTML = html;
+                }
+            });
+        }
+
         // --- Drawer Logic ---
         const overlay = document.getElementById('overlay');
         const mobileMenu = document.getElementById('mobileMenu');
@@ -2317,6 +2360,7 @@
                     const freshProducts = results.data.filter(p => p['Product Title'] && p['Product Title'].trim() !== ''); 
                     if (freshProducts.length > 0) {
                         allFetchedProducts = freshProducts;
+                        populateCategories(allFetchedProducts);
                         try {
                             localStorage.setItem('am_products_cache', JSON.stringify(freshProducts));
                         } catch(e) {}
