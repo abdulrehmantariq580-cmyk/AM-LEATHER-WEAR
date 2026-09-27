@@ -2047,7 +2047,7 @@
         }
 
         // --- Drive Link Converter (Google High-Speed Global Image CDN) ---
-        function convertDriveLink(url, size = 'w600') {
+        function convertDriveLink(url, size = 'w400') {
             if (!url) return '';
             if (url.includes('drive.google.com') || url.includes('googleusercontent.com')) {
                 const idMatch = url.match(/id=([^&]+)/) || url.match(/\/d\/([^/]+)/);
@@ -2368,7 +2368,7 @@
                     const tag = product['Product Tag / Badge'];
                     const rawImage = product['Main Product Image  (Only 1)']; 
 
-                    let finalImageUrl = convertDriveLink(rawImage, 'w600') || 'media/product_1.webp'; 
+                    let finalImageUrl = convertDriveLink(rawImage, 'w400') || 'media/product_1.webp'; 
                     let priceString = price ? `Rs. ${price}` : '';
 
                     let badgeHTML = '';
