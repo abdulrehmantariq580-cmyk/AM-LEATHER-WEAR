@@ -1538,8 +1538,8 @@
     <!-- ================= ANNOUNCEMENT BAR ================= -->
     <div class="announcement-bar">
         <div class="announcement-track">
-            <span>FREE GLOBAL SHIPPING ON ORDERS OVER Rs.5000 &nbsp; | &nbsp; PREMIUM CRAFTSMANSHIP &nbsp; | &nbsp; 100% GENUINE LEATHER &nbsp; | &nbsp; </span>
-            <span>FREE GLOBAL SHIPPING ON ORDERS OVER Rs.5000 &nbsp; | &nbsp; PREMIUM CRAFTSMANSHIP &nbsp; | &nbsp; 100% GENUINE LEATHER &nbsp; | &nbsp; </span>
+            <span>CUSTOM LEATHER PRODUCTS MADE TO ORDER &nbsp; | &nbsp; PREMIUM CRAFTSMANSHIP &nbsp; | &nbsp; 100% GENUINE LEATHER &nbsp; | &nbsp; </span>
+            <span>CUSTOM LEATHER PRODUCTS MADE TO ORDER &nbsp; | &nbsp; PREMIUM CRAFTSMANSHIP &nbsp; | &nbsp; 100% GENUINE LEATHER &nbsp; | &nbsp; </span>
         </div>
     </div>
 
@@ -1787,6 +1787,19 @@
         </div>
     </section>
 
+    <!-- ================= CUSTOM LEATHER PRODUCTS ================= -->
+    <section class="custom-products-section" style="padding: 80px 20px; background: linear-gradient(135deg, #111, #222); color: #fff; text-align: center;">
+        <div style="max-width: 800px; margin: 0 auto;">
+            <h2 style="font-size: 2.8rem; margin-bottom: 20px; color: #d4af37;">Design Your Custom Leather Product</h2>
+            <p style="font-size: 1.2rem; line-height: 1.6; margin-bottom: 40px; color: #ccc;">
+                Can't find exactly what you're looking for? We offer bespoke, made-to-order leather goods tailored perfectly to your style and specifications. Share your vision with us, and our expert artisans will bring it to life with premium craftsmanship.
+            </p>
+            <a href="https://wa.me/923224383425" target="_blank" style="display: inline-flex; align-items: center; justify-content: center; padding: 15px 40px; background: #25D366; color: #fff; text-decoration: none; font-size: 1.2rem; font-weight: bold; border-radius: 50px; transition: transform 0.3s ease, box-shadow 0.3s ease;">
+                <i class="fab fa-whatsapp" style="margin-right: 12px; font-size: 1.5rem;"></i> Contact on WhatsApp
+            </a>
+        </div>
+    </section>
+
     <!-- ================= BRAND STORY / ABOUT US ================= -->
     <section class="about-section" id="about">
         <div class="about-container">
@@ -1916,6 +1929,7 @@
                 <h1 class="modal-title" id="modalTitle">Product Title</h1>
                 <div class="modal-price" id="modalPrice">Rs. 0</div>
                 <p class="modal-desc" id="modalDesc">Product description will load here.</p>
+                <p class="modal-stock" id="modalStock" style="font-weight: 600; margin-top: 15px; font-size: 1.1rem;"></p>
                 
                 <div class="modal-options">
                     <div class="option-group">
@@ -1932,7 +1946,10 @@
                     </div>
                 </div>
                 
-                <button class="modal-add-btn" onclick="addToCartFromModal()">ADD TO CART</button>
+                <div style="display: flex; gap: 15px; margin-top: 25px; width: 100%;">
+                    <button class="modal-add-btn" onclick="addToCartFromModal()" style="flex: 1; margin-top: 0;">ADD TO CART</button>
+                    <button class="modal-buy-btn" onclick="buyNowFromModal()" style="flex: 1; background: #c0392b; color: white; border: none; padding: 15px 20px; font-size: 1rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; cursor: pointer; transition: 0.3s; border-radius: 0;">BUY NOW</button>
+                </div>
             </div>
         </div>
     </div>
@@ -2213,6 +2230,7 @@
             const colors = getVal('colors') || 'Standard';
             const material = getVal('material') || '100% Genuine Leather';
             const rawImage = getVal('image') || getVal('picture');
+            const stockQty = getVal('stock') || getVal('quantity') || '0';
             
             document.getElementById('modalImage').src = convertDriveLink(rawImage, 'w1000') || 'media/product_1.webp';
             document.getElementById('modalTitle').innerText = title;
@@ -2222,6 +2240,22 @@
             document.getElementById('modalSizes').innerText = sizes;
             document.getElementById('modalColors').innerText = colors;
             document.getElementById('modalMaterial').innerText = material;
+
+            let stockStatusText = '';
+            let stockColor = '';
+            const parsedStock = parseInt(stockQty);
+            if (!isNaN(parsedStock) && parsedStock > 0) {
+                stockStatusText = 'Available';
+                stockColor = '#27ae60';
+            } else {
+                stockStatusText = 'Out of Stock';
+                stockColor = '#c0392b';
+            }
+            const stockElem = document.getElementById('modalStock');
+            if (stockElem) {
+                stockElem.innerText = stockStatusText;
+                stockElem.style.color = stockColor;
+            }
 
             document.getElementById('productModal').classList.add('active');
             document.body.style.overflow = 'hidden';
@@ -2236,6 +2270,12 @@
             addToCart(currentlyViewingIndex);
             toggleCart();
             closeProductPage();
+        }
+
+        function buyNowFromModal() {
+            cartArray = [];
+            addToCart(currentlyViewingIndex); 
+            window.location.href = 'checkout.html';
         }
 
         // --- Live Search Overlay Logic ---
