@@ -4,7 +4,40 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>A.M LEATHER WEAR | Shop Catalog</title>
+    <title>Shop Collection | A.M LEATHER WEAR</title>
+
+    <!-- Primary Meta Tags -->
+    <meta name="title" content="Shop Collection | A.M LEATHER WEAR - Premium Leather Goods">
+    <meta name="description"
+        content="Explore our full collection of premium genuine leather products. Find the perfect leather jacket, wallet, or bag at A.M Leather Wear with global shipping.">
+    <meta name="keywords"
+        content="buy leather jackets online, shop leather wallets, premium leather bags, A.M Leather Wear shop, genuine leather collection">
+    <meta name="author" content="A.M LEATHER WEAR">
+    <meta name="robots" content="index, follow">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://amleatherwear.com/shop.html">
+    <meta property="og:title" content="Shop Collection | A.M LEATHER WEAR - Premium Leather Goods">
+    <meta property="og:description"
+        content="Explore our full collection of premium genuine leather products. Find the perfect leather jacket, wallet, or bag at A.M Leather Wear with global shipping.">
+    <meta property="og:image" content="https://amleatherwear.com/media/logo.webp">
+    <meta property="og:site_name" content="A.M LEATHER WEAR">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://amleatherwear.com/shop.html">
+    <meta property="twitter:title" content="Shop Collection | A.M LEATHER WEAR - Premium Leather Goods">
+    <meta property="twitter:description"
+        content="Explore our full collection of premium genuine leather products. Find the perfect leather jacket, wallet, or bag at A.M Leather Wear with global shipping.">
+    <meta property="twitter:image" content="https://amleatherwear.com/media/logo.webp">
+
+    <!-- Favicons & Theme Color -->
+    <link rel="apple-touch-icon" sizes="180x180" href="media/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="media/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="media/favicon-16x16.png">
+    <link rel="manifest" href="media/site.webmanifest">
+    <meta name="theme-color" content="#111111">
     <!-- Preconnect to CDNs for Ultra-Fast Image Loading -->
     <link rel="preconnect" href="https://drive.google.com">
     <link rel="preconnect" href="https://lh3.googleusercontent.com" crossorigin>
@@ -2150,7 +2183,8 @@
                 <h1 class="modal-title" id="modalTitle">Product Title</h1>
                 <div class="modal-price" id="modalPrice">Rs. 0</div>
                 <p class="modal-desc" id="modalDesc">Product description will load here.</p>
-                <p class="modal-stock" id="modalStock" style="font-weight: 600; margin-top: 15px; font-size: 1.1rem;"></p>
+                <p class="modal-stock" id="modalStock" style="font-weight: 600; margin-top: 15px; font-size: 1.1rem;">
+                </p>
 
                 <div class="modal-options">
                     <div class="option-group">
@@ -2168,8 +2202,11 @@
                 </div>
 
                 <div style="display: flex; gap: 15px; margin-top: 25px; width: 100%;">
-                    <button class="modal-add-btn" onclick="addToCartFromModal()" style="flex: 1; margin-top: 0;">ADD TO CART</button>
-                    <button class="modal-buy-btn" onclick="buyNowFromModal()" style="flex: 1; background: #c0392b; color: white; border: none; padding: 15px 20px; font-size: 1rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; cursor: pointer; transition: 0.3s; border-radius: 0;">BUY NOW</button>
+                    <button class="modal-add-btn" onclick="addToCartFromModal()" style="flex: 1; margin-top: 0;">ADD TO
+                        CART</button>
+                    <button class="modal-buy-btn" onclick="buyNowFromModal()"
+                        style="flex: 1; background: #c0392b; color: white; border: none; padding: 15px 20px; font-size: 1rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; cursor: pointer; transition: 0.3s; border-radius: 0;">BUY
+                        NOW</button>
                 </div>
             </div>
         </div>
@@ -2473,7 +2510,7 @@
 
         function buyNowFromModal() {
             cartArray = [];
-            addToCart(currentlyViewingIndex); 
+            addToCart(currentlyViewingIndex);
             window.location.href = 'checkout.html';
         }
 

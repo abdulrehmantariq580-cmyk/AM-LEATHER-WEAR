@@ -1,15 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>A.M LEATHER WEAR | Premium Store</title>
+    <title>A.M LEATHER WEAR | Premium Genuine Leather Products</title>
+
+    <!-- Primary Meta Tags -->
+    <meta name="title" content="A.M LEATHER WEAR | Premium Genuine Leather Products & Custom Designs">
+    <meta name="description"
+        content="Discover A.M Leather Wear. Shop premium genuine leather jackets, wallets, bags, and belts. We also offer custom bespoke leather goods tailored perfectly to your style.">
+    <meta name="keywords"
+        content="leather wear, genuine leather jackets, leather wallets, leather bags, custom leather products, bespoke leather, premium craftsmanship, A.M Leather Wear, Pakistan leather">
+    <meta name="author" content="A.M LEATHER WEAR">
+    <meta name="robots" content="index, follow">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://amleatherwear.com/">
+    <meta property="og:title" content="A.M LEATHER WEAR | Premium Genuine Leather Products & Custom Designs">
+    <meta property="og:description"
+        content="Discover A.M Leather Wear. Shop premium genuine leather jackets, wallets, bags, and belts. We also offer custom bespoke leather goods tailored perfectly to your style.">
+    <meta property="og:image" content="https://amleatherwear.com/media/logo.webp">
+    <meta property="og:site_name" content="A.M LEATHER WEAR">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://amleatherwear.com/">
+    <meta property="twitter:title" content="A.M LEATHER WEAR | Premium Genuine Leather Products & Custom Designs">
+    <meta property="twitter:description"
+        content="Discover A.M Leather Wear. Shop premium genuine leather jackets, wallets, bags, and belts. We also offer custom bespoke leather goods tailored perfectly to your style.">
+    <meta property="twitter:image" content="https://amleatherwear.com/media/logo.webp">
+
+    <!-- Favicons & Theme Color -->
+    <link rel="apple-touch-icon" sizes="180x180" href="media/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="media/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="media/favicon-16x16.png">
+    <link rel="manifest" href="media/site.webmanifest">
+    <meta name="theme-color" content="#111111">
     <!-- Preconnect to CDNs for Ultra-Fast Image Loading -->
     <link rel="preconnect" href="https://drive.google.com">
     <link rel="preconnect" href="https://lh3.googleusercontent.com" crossorigin>
     <link rel="preconnect" href="https://docs.google.com">
     <!-- Google Fonts for Modern Look -->
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&family=Oswald:wght@400;500;700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&family=Oswald:wght@400;500;700&display=swap"
+        rel="stylesheet">
     <!-- Font Awesome for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- CSV Parser for Google Sheets -->
@@ -20,41 +56,57 @@
            1. CORE VARIABLES & GLOBAL RESETS
            =================================================== */
         :root {
-            --brand-dark: #2b2b2b; /* Dark Charcoal */
-            --brand-light: #e0e0e0; /* Light Grey */
+            --brand-dark: #2b2b2b;
+            /* Dark Charcoal */
+            --brand-light: #e0e0e0;
+            /* Light Grey */
             --white: #ffffff;
             --accent: #5a5a5a;
             --whatsapp: #25d366;
             --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         body {
             font-family: 'Montserrat', sans-serif;
-            background-color: var(--brand-light); 
+            background-color: var(--brand-light);
             color: var(--brand-dark);
             overflow-x: hidden;
         }
 
-        a { text-decoration: none; color: inherit; }
-        ul { list-style: none; }
-        button { cursor: pointer; font-family: 'Montserrat', sans-serif; }
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        button {
+            cursor: pointer;
+            font-family: 'Montserrat', sans-serif;
+        }
 
         /* ===================================================
            2. ANNOUNCEMENT BAR (Seamless Loop)
            =================================================== */
         .announcement-bar {
-            background-color: var(--brand-light); 
-            color: var(--brand-dark); 
+            background-color: var(--brand-light);
+            color: var(--brand-dark);
             padding: 10px 0;
             overflow: hidden;
             white-space: nowrap;
             position: relative;
             z-index: 100;
-            border-bottom: 1px solid rgba(0,0,0,0.1);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
         }
-        
+
         .announcement-track {
             display: inline-block;
             white-space: nowrap;
@@ -70,8 +122,13 @@
         }
 
         @keyframes scrollText {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); } 
+            0% {
+                transform: translateX(0);
+            }
+
+            100% {
+                transform: translateX(-50%);
+            }
         }
 
         /* ===================================================
@@ -87,37 +144,115 @@
             justify-content: space-between;
             align-items: center;
             z-index: 99;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
         }
 
-        .logo-container { flex: 1; display: flex; justify-content: flex-start; }
-        .logo-container img { height: 60px; object-fit: contain; }
+        .logo-container {
+            flex: 1;
+            display: flex;
+            justify-content: flex-start;
+        }
 
-        .desktop-nav { flex: 2; display: flex; justify-content: center; }
-        .desktop-nav ul { display: flex; gap: 35px; }
-        .desktop-nav a { font-size: 14px; text-transform: uppercase; letter-spacing: 2px; font-weight: 600; transition: var(--transition); }
-        .desktop-nav a:hover { color: var(--white); text-shadow: 0 0 10px rgba(255,255,255,0.3); }
+        .logo-container img {
+            height: 60px;
+            object-fit: contain;
+        }
 
-        .header-icons { flex: 1; display: flex; justify-content: flex-end; gap: 20px; font-size: 20px; }
-        .header-icons i { cursor: pointer; transition: var(--transition); }
-        .header-icons i:hover { color: var(--white); transform: translateY(-2px); }
-        
-        .mobile-menu-btn { display: none; }
-        .menu-btn { background: none; border: none; color: var(--brand-light); font-size: 24px; transition: var(--transition); }
+        .desktop-nav {
+            flex: 2;
+            display: flex;
+            justify-content: center;
+        }
 
-        .cart-icon-wrapper { position: relative; cursor: pointer; }
+        .desktop-nav ul {
+            display: flex;
+            gap: 35px;
+        }
+
+        .desktop-nav a {
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+
+        .desktop-nav a:hover {
+            color: var(--white);
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+        }
+
+        .header-icons {
+            flex: 1;
+            display: flex;
+            justify-content: flex-end;
+            gap: 20px;
+            font-size: 20px;
+        }
+
+        .header-icons i {
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .header-icons i:hover {
+            color: var(--white);
+            transform: translateY(-2px);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+        }
+
+        .menu-btn {
+            background: none;
+            border: none;
+            color: var(--brand-light);
+            font-size: 24px;
+            transition: var(--transition);
+        }
+
+        .cart-icon-wrapper {
+            position: relative;
+            cursor: pointer;
+        }
+
         .cart-count {
-            position: absolute; top: -8px; right: -10px;
-            background: var(--white); color: var(--brand-dark);
-            font-size: 10px; font-weight: bold; width: 16px; height: 16px;
-            border-radius: 50%; display: flex; align-items: center; justify-content: center;
+            position: absolute;
+            top: -8px;
+            right: -10px;
+            background: var(--white);
+            color: var(--brand-dark);
+            font-size: 10px;
+            font-weight: bold;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         @media (max-width: 992px) {
-            .desktop-nav { display: none; }
-            .mobile-menu-btn { display: flex; flex: 1; justify-content: flex-start; }
-            .logo-container { flex: 2; justify-content: center; }
-            .header-icons { flex: 1; justify-content: flex-end; }
+            .desktop-nav {
+                display: none;
+            }
+
+            .mobile-menu-btn {
+                display: flex;
+                flex: 1;
+                justify-content: flex-start;
+            }
+
+            .logo-container {
+                flex: 2;
+                justify-content: center;
+            }
+
+            .header-icons {
+                flex: 1;
+                justify-content: flex-end;
+            }
         }
 
         /* ===================================================
@@ -141,33 +276,39 @@
             padding: 40px 5%;
             overflow-y: auto;
         }
+
         .search-overlay.active {
             opacity: 1;
             visibility: visible;
         }
+
         .search-container {
             width: 100%;
             max-width: 900px;
             margin: 0 auto;
         }
+
         .search-header {
             display: flex;
             align-items: center;
             gap: 15px;
             margin-bottom: 25px;
         }
+
         .search-input-box {
             position: relative;
             flex: 1;
             display: flex;
             align-items: center;
         }
+
         .search-input-icon {
             position: absolute;
             left: 20px;
             color: #888;
             font-size: 18px;
         }
+
         .search-input-box input {
             width: 100%;
             padding: 16px 50px 16px 55px;
@@ -180,11 +321,13 @@
             outline: none;
             transition: var(--transition);
         }
+
         .search-input-box input:focus {
             border-color: var(--brand-light);
             background: rgba(255, 255, 255, 0.12);
-            box-shadow: 0 0 20px rgba(255,255,255,0.1);
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
         }
+
         .clear-search-btn {
             position: absolute;
             right: 18px;
@@ -195,7 +338,11 @@
             cursor: pointer;
             display: none;
         }
-        .clear-search-btn:hover { color: var(--white); }
+
+        .clear-search-btn:hover {
+            color: var(--white);
+        }
+
         .close-search-btn {
             background: rgba(255, 255, 255, 0.1);
             border: none;
@@ -210,10 +357,12 @@
             align-items: center;
             justify-content: center;
         }
+
         .close-search-btn:hover {
             background: rgba(255, 255, 255, 0.25);
             transform: rotate(90deg);
         }
+
         .search-status {
             text-align: center;
             color: #aaa;
@@ -221,6 +370,7 @@
             margin: 15px 0 25px;
             letter-spacing: 1px;
         }
+
         .search-results-grid {
             display: flex;
             flex-direction: column;
@@ -230,6 +380,7 @@
             padding-right: 5px;
             width: 100%;
         }
+
         .search-item-card {
             background: rgba(255, 255, 255, 0.06);
             border: 1px solid rgba(255, 255, 255, 0.12);
@@ -243,11 +394,13 @@
             gap: 16px;
             width: 100%;
         }
+
         .search-item-card:hover {
             background: rgba(255, 255, 255, 0.12);
             border-color: rgba(255, 255, 255, 0.35);
             transform: translateX(4px);
         }
+
         .search-item-thumb {
             width: 75px;
             height: 75px;
@@ -261,12 +414,14 @@
             padding: 6px;
             flex-shrink: 0;
         }
+
         .search-item-thumb img {
             width: 100%;
             height: 100%;
             object-fit: contain;
             display: block;
         }
+
         .search-item-info {
             flex: 1;
             display: flex;
@@ -274,6 +429,7 @@
             gap: 4px;
             text-align: left;
         }
+
         .search-item-cat {
             font-size: 11px;
             text-transform: uppercase;
@@ -281,6 +437,7 @@
             color: #aaa;
             font-weight: 600;
         }
+
         .search-item-title {
             font-size: 15px;
             font-weight: 600;
@@ -288,12 +445,14 @@
             margin: 0;
             line-height: 1.3;
         }
+
         .search-item-price {
             font-size: 14px;
             font-weight: 700;
             color: var(--brand-light);
             margin-top: 2px;
         }
+
         .search-item-arrow {
             color: #888;
             font-size: 15px;
@@ -301,22 +460,27 @@
             padding-right: 5px;
             flex-shrink: 0;
         }
+
         .search-item-card:hover .search-item-arrow {
             color: var(--white);
             transform: translateX(4px);
         }
+
         @media (max-width: 768px) {
             .search-item-thumb {
                 width: 65px;
                 height: 65px;
                 min-width: 65px;
             }
+
             .search-item-title {
                 font-size: 13.5px;
             }
+
             .search-item-price {
                 font-size: 13px;
             }
+
             .search-item-card {
                 padding: 10px 12px;
                 gap: 12px;
@@ -327,10 +491,15 @@
            5. SIDE DRAWERS (MENU & CART)
            =================================================== */
         .drawer {
-            position: fixed; top: 0; height: 100vh;
-            background: var(--brand-dark); color: var(--brand-light);
-            z-index: 1000; padding: 30px; transition: var(--transition);
-            box-shadow: 0 0 30px rgba(0,0,0,0.5);
+            position: fixed;
+            top: 0;
+            height: 100vh;
+            background: var(--brand-dark);
+            color: var(--brand-light);
+            z-index: 1000;
+            padding: 30px;
+            transition: var(--transition);
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
         }
 
         .mobile-menu {
@@ -343,7 +512,10 @@
             padding: 25px 22px;
             background: #1f1f1f;
         }
-        .mobile-menu.active { left: 0; }
+
+        .mobile-menu.active {
+            left: 0;
+        }
 
         .mobile-menu-header {
             display: flex;
@@ -354,6 +526,7 @@
             margin-bottom: 15px;
             flex-shrink: 0;
         }
+
         .mobile-menu-title {
             font-family: 'Oswald', sans-serif;
             font-size: 22px;
@@ -361,6 +534,7 @@
             color: var(--white);
             text-transform: uppercase;
         }
+
         .mobile-menu-header .close-btn {
             position: static;
             font-size: 22px;
@@ -371,6 +545,7 @@
             overflow-y: auto;
             padding-right: 5px;
         }
+
         .mobile-nav-list {
             display: flex;
             flex-direction: column;
@@ -379,11 +554,13 @@
             padding: 0;
             list-style: none;
         }
+
         .mobile-nav-item {
             list-style: none;
             border-bottom: 1px solid rgba(255, 255, 255, 0.05);
             padding-bottom: 4px;
         }
+
         .mobile-nav-link {
             display: flex;
             align-items: center;
@@ -397,15 +574,18 @@
             transition: all 0.3s ease;
             cursor: pointer;
         }
+
         .mobile-nav-link:hover {
             color: var(--white);
             padding-left: 5px;
         }
+
         .nav-arrow {
             font-size: 12px;
             color: #888;
             transition: transform 0.2s ease;
         }
+
         .mobile-nav-link:hover .nav-arrow {
             transform: translateX(4px);
             color: var(--white);
@@ -417,10 +597,12 @@
             color: #888;
             transition: transform 0.3s ease;
         }
+
         .has-dropdown.open .dropdown-arrow {
             transform: rotate(180deg);
             color: var(--white);
         }
+
         .mobile-submenu {
             max-height: 0;
             overflow: hidden;
@@ -435,10 +617,12 @@
             gap: 4px;
             list-style: none;
         }
+
         .has-dropdown.open .mobile-submenu {
             max-height: 250px;
             padding: 10px 14px;
         }
+
         .mobile-submenu li a {
             font-size: 13.5px;
             text-transform: uppercase;
@@ -452,15 +636,18 @@
             transition: all 0.2s ease;
             border-bottom: none;
         }
+
         .mobile-submenu li a i {
             font-size: 7px;
             color: #777;
             transition: color 0.2s ease;
         }
+
         .mobile-submenu li a:hover {
             color: var(--white);
             padding-left: 5px;
         }
+
         .mobile-submenu li a:hover i {
             color: var(--white);
         }
@@ -472,6 +659,7 @@
             margin-top: 15px;
             flex-shrink: 0;
         }
+
         .social-label {
             font-size: 11px;
             text-transform: uppercase;
@@ -480,11 +668,13 @@
             margin-bottom: 12px;
             font-weight: 600;
         }
+
         .mobile-social-icons {
             display: flex;
             gap: 14px;
             align-items: center;
         }
+
         .mobile-social-icons .social-icon {
             width: 44px;
             height: 44px;
@@ -498,18 +688,21 @@
             color: var(--white);
             transition: all 0.3s ease;
         }
+
         .mobile-social-icons .social-icon.insta:hover {
             background: #e1306c;
             border-color: #e1306c;
             transform: translateY(-3px);
             box-shadow: 0 5px 15px rgba(225, 48, 108, 0.4);
         }
+
         .mobile-social-icons .social-icon.fb:hover {
             background: #1877f2;
             border-color: #1877f2;
             transform: translateY(-3px);
             box-shadow: 0 5px 15px rgba(24, 119, 242, 0.4);
         }
+
         .mobile-social-icons .social-icon.wa:hover {
             background: #25d366;
             border-color: #25d366;
@@ -518,21 +711,46 @@
         }
 
         .cart-drawer {
-            right: -100%; width: 360px; height: 100vh;
-            display: flex; flex-direction: column;
-            background: var(--brand-dark); color: var(--brand-light);
-            position: fixed; top: 0; z-index: 1000; padding: 30px 25px;
-            transition: var(--transition); box-shadow: 0 0 30px rgba(0,0,0,0.5);
+            right: -100%;
+            width: 360px;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            background: var(--brand-dark);
+            color: var(--brand-light);
+            position: fixed;
+            top: 0;
+            z-index: 1000;
+            padding: 30px 25px;
+            transition: var(--transition);
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
         }
-        .cart-drawer.active { right: 0; }
-        
-        .close-btn { position: absolute; top: 25px; right: 25px; background: none; border: none; color: var(--brand-light); font-size: 24px; cursor: pointer; }
-        .cart-header { 
-            border-bottom: 1px solid var(--accent); padding-bottom: 15px; 
-            margin-bottom: 15px; font-family: 'Oswald', sans-serif; font-size: 20px; 
-            letter-spacing: 1px; flex-shrink: 0; 
+
+        .cart-drawer.active {
+            right: 0;
         }
-        
+
+        .close-btn {
+            position: absolute;
+            top: 25px;
+            right: 25px;
+            background: none;
+            border: none;
+            color: var(--brand-light);
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        .cart-header {
+            border-bottom: 1px solid var(--accent);
+            padding-bottom: 15px;
+            margin-bottom: 15px;
+            font-family: 'Oswald', sans-serif;
+            font-size: 20px;
+            letter-spacing: 1px;
+            flex-shrink: 0;
+        }
+
         .cart-items {
             flex-grow: 1;
             overflow-y: auto;
@@ -601,7 +819,9 @@
             transition: background 0.2s;
         }
 
-        .qty-btn:hover { background: rgba(255, 255, 255, 0.4); }
+        .qty-btn:hover {
+            background: rgba(255, 255, 255, 0.4);
+        }
 
         .cart-item-qty {
             font-size: 13px;
@@ -621,34 +841,59 @@
             transition: transform 0.2s;
         }
 
-        .remove-item-btn:hover { transform: scale(1.15); }
-
-        .cart-footer { 
-            border-top: 1px solid var(--accent); 
-            padding-top: 15px; margin-top: 15px; 
-            flex-shrink: 0; 
+        .remove-item-btn:hover {
+            transform: scale(1.15);
         }
 
-        .checkout-btn { 
-            width: 100%; padding: 15px; 
-            background: #d4af37; color: #111; 
-            border: none; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; 
-            display: flex; align-items: center; justify-content: center; gap: 8px;
-            font-size: 14px; border-radius: 4px; transition: var(--transition); 
+        .cart-footer {
+            border-top: 1px solid var(--accent);
+            padding-top: 15px;
+            margin-top: 15px;
+            flex-shrink: 0;
         }
-        .checkout-btn:hover { 
-            background: #f0c94d; 
-            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.4); 
+
+        .checkout-btn {
+            width: 100%;
+            padding: 15px;
+            background: #d4af37;
+            color: #111;
+            border: none;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            font-size: 14px;
+            border-radius: 4px;
+            transition: var(--transition);
+        }
+
+        .checkout-btn:hover {
+            background: #f0c94d;
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.4);
             transform: translateY(-1px);
         }
 
         .overlay {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100vh;
-            background: rgba(0,0,0,0.7); z-index: 999;
-            opacity: 0; visibility: hidden; transition: var(--transition);
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 999;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
             backdrop-filter: blur(5px);
         }
-        .overlay.active { opacity: 1; visibility: visible; }
+
+        .overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
 
         /* ===================================================
            6. HERO SLIDER
@@ -656,36 +901,73 @@
         .hero-slider {
             position: relative;
             width: 100%;
-            aspect-ratio: 16 / 9; 
-            max-height: 85vh; 
+            aspect-ratio: 16 / 9;
+            max-height: 85vh;
             overflow: hidden;
             background: var(--brand-dark);
         }
-        
+
         .slide {
-            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
             transform: translateX(100%);
             transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
         }
-        .slide.active { transform: translateX(0); }
-        .slide.prev { transform: translateX(-100%); }
-        
-        .slide img { width: 100%; height: 100%; object-fit: cover; }
+
+        .slide.active {
+            transform: translateX(0);
+        }
+
+        .slide.prev {
+            transform: translateX(-100%);
+        }
+
+        .slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
         .slide::after {
-            content: ''; position: absolute; bottom: 0; left: 0; width: 100%; height: 20%;
-            background: linear-gradient(to top, rgba(0,0,0,0.6), transparent);
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 20%;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.6), transparent);
         }
 
         .slider-dots-container {
-            position: absolute; bottom: 30px; left: 50%; transform: translateX(-50%);
-            display: flex; gap: 12px; z-index: 10;
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 12px;
+            z-index: 10;
         }
+
         .dot {
-            width: 12px; height: 12px; border-radius: 50%;
-            background: rgba(255, 255, 255, 0.4); cursor: pointer; transition: var(--transition);
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.4);
+            cursor: pointer;
+            transition: var(--transition);
         }
-        .dot.active { background: var(--white); box-shadow: 0 0 10px rgba(255,255,255,0.8); }
-        .dot:hover { background: rgba(255, 255, 255, 0.9); }
+
+        .dot.active {
+            background: var(--white);
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+        }
+
+        .dot:hover {
+            background: rgba(255, 255, 255, 0.9);
+        }
 
         /* ===================================================
            7. 3D POPULAR CAROUSEL
@@ -745,6 +1027,7 @@
             opacity: 0;
             transition: opacity 0.4s ease, all 0.6s ease;
         }
+
         .slider-3d-item img.loaded {
             opacity: 1;
         }
@@ -755,10 +1038,10 @@
             transform: translateX(0) scale(1);
             pointer-events: auto;
         }
-        
+
         .slider-3d-item.active img {
             filter: blur(0);
-            filter: drop-shadow(0 20px 15px rgba(0,0,0,0.2));
+            filter: drop-shadow(0 20px 15px rgba(0, 0, 0, 0.2));
         }
 
         .slider-3d-item.prev {
@@ -768,7 +1051,7 @@
             pointer-events: auto;
             cursor: pointer;
         }
-        
+
         .slider-3d-item.next {
             opacity: 0.5;
             z-index: 5;
@@ -777,12 +1060,20 @@
             cursor: pointer;
         }
 
-        .slider-3d-item.prev img, .slider-3d-item.next img {
+        .slider-3d-item.prev img,
+        .slider-3d-item.next img {
             filter: blur(8px);
         }
 
-        .slider-3d-item.hidden-left { transform: translateX(-600px) scale(0.5); opacity: 0; }
-        .slider-3d-item.hidden-right { transform: translateX(600px) scale(0.5); opacity: 0; }
+        .slider-3d-item.hidden-left {
+            transform: translateX(-600px) scale(0.5);
+            opacity: 0;
+        }
+
+        .slider-3d-item.hidden-right {
+            transform: translateX(600px) scale(0.5);
+            opacity: 0;
+        }
 
         .slider-3d-info {
             margin-top: 20px;
@@ -800,9 +1091,20 @@
             transition-delay: 0.2s;
         }
 
-        .slider-3d-info h3 { font-size: 20px; font-weight: 700; color: #111; margin-bottom: 5px; }
-        .slider-3d-info p { font-size: 16px; color: #666; font-weight: 600; margin-bottom: 15px; }
-        
+        .slider-3d-info h3 {
+            font-size: 20px;
+            font-weight: 700;
+            color: #111;
+            margin-bottom: 5px;
+        }
+
+        .slider-3d-info p {
+            font-size: 16px;
+            color: #666;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
         .buy-now-btn {
             background: #111;
             color: #fff;
@@ -815,7 +1117,10 @@
             text-transform: uppercase;
             transition: background 0.3s ease;
         }
-        .buy-now-btn:hover { background: #333; }
+
+        .buy-now-btn:hover {
+            background: #333;
+        }
 
         .carousel-nav-arrows {
             display: flex;
@@ -839,18 +1144,42 @@
             transition: all 0.3s ease;
         }
 
-        .arrow-btn:hover { background: #111; color: var(--white); }
+        .arrow-btn:hover {
+            background: #111;
+            color: var(--white);
+        }
 
         @media (max-width: 992px) {
-            .slider-3d-item.prev { transform: translateX(-220px) scale(0.7); }
-            .slider-3d-item.next { transform: translateX(220px) scale(0.7); }
+            .slider-3d-item.prev {
+                transform: translateX(-220px) scale(0.7);
+            }
+
+            .slider-3d-item.next {
+                transform: translateX(220px) scale(0.7);
+            }
         }
+
         @media (max-width: 768px) {
-            .slider-3d-item.prev { transform: translateX(-150px) scale(0.6); }
-            .slider-3d-item.next { transform: translateX(150px) scale(0.6); }
-            .slider-3d-item { width: 250px; margin-left: -125px; }
-            .slider-3d-item img { height: 250px; }
-            .slider-3d-container { height: 450px; }
+            .slider-3d-item.prev {
+                transform: translateX(-150px) scale(0.6);
+            }
+
+            .slider-3d-item.next {
+                transform: translateX(150px) scale(0.6);
+            }
+
+            .slider-3d-item {
+                width: 250px;
+                margin-left: -125px;
+            }
+
+            .slider-3d-item img {
+                height: 250px;
+            }
+
+            .slider-3d-container {
+                height: 450px;
+            }
         }
 
         /* ===================================================
@@ -858,7 +1187,7 @@
            =================================================== */
         .catalog-section {
             padding: 80px 0;
-            background-color: #fcfcfc; 
+            background-color: #fcfcfc;
         }
 
         .catalog-header {
@@ -893,7 +1222,7 @@
         }
 
         .product-card:hover {
-            box-shadow: 0 10px 25px rgba(0,0,0,0.06);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.06);
             transform: translateY(-3px);
             border-color: #ddd;
         }
@@ -918,8 +1247,13 @@
         }
 
         @keyframes skeletonShimmer {
-            0% { background-position: 200% 0; }
-            100% { background-position: -200% 0; }
+            0% {
+                background-position: 200% 0;
+            }
+
+            100% {
+                background-position: -200% 0;
+            }
         }
 
         .product-badge {
@@ -934,10 +1268,21 @@
             z-index: 2;
             border-radius: 2px;
         }
-        
-        .badge-new { background: var(--brand-dark); color: var(--white); }
-        .badge-hot { background: #d9381e; color: #fff; }
-        .badge-best { background: #8b5a2b; color: #fff; }
+
+        .badge-new {
+            background: var(--brand-dark);
+            color: var(--white);
+        }
+
+        .badge-hot {
+            background: #d9381e;
+            color: #fff;
+        }
+
+        .badge-best {
+            background: #8b5a2b;
+            color: #fff;
+        }
 
         .product-img-wrapper img {
             width: 100%;
@@ -1002,6 +1347,7 @@
             text-align: center;
             margin-top: 50px;
         }
+
         .view-all-btn {
             padding: 15px 40px;
             background: var(--brand-dark);
@@ -1015,9 +1361,10 @@
             display: inline-block;
             border-radius: 4px;
         }
+
         .view-all-btn:hover {
             background: #444;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
             transform: translateY(-2px);
         }
 
@@ -1029,16 +1376,37 @@
         }
 
         @media (max-width: 768px) {
-            .catalog-section { padding: 50px 0; }
+            .catalog-section {
+                padding: 50px 0;
+            }
+
             .catalog-grid {
                 grid-template-columns: repeat(2, 1fr);
                 gap: 12px;
                 padding: 0 12px;
             }
-            .product-info { padding: 15px 10px; }
-            .product-info h3 { font-size: 13px; margin-bottom: 5px; }
-            .product-info .price { font-size: 14px; margin-bottom: 10px; }
-            .product-badge { top: 10px; left: 10px; padding: 4px 8px; font-size: 9px; }
+
+            .product-info {
+                padding: 15px 10px;
+            }
+
+            .product-info h3 {
+                font-size: 13px;
+                margin-bottom: 5px;
+            }
+
+            .product-info .price {
+                font-size: 14px;
+                margin-bottom: 10px;
+            }
+
+            .product-badge {
+                top: 10px;
+                left: 10px;
+                padding: 4px 8px;
+                font-size: 9px;
+            }
+
             .add-to-cart-btn {
                 background: var(--brand-dark);
                 color: var(--white);
@@ -1062,6 +1430,7 @@
             letter-spacing: 2px;
             text-transform: uppercase;
         }
+
         .loader-spinner {
             width: 20px;
             height: 20px;
@@ -1070,8 +1439,11 @@
             border-radius: 50%;
             animation: spinLoader 0.75s linear infinite;
         }
+
         @keyframes spinLoader {
-            to { transform: rotate(360deg); }
+            to {
+                transform: rotate(360deg);
+            }
         }
 
         .skeleton-card {
@@ -1083,6 +1455,7 @@
             display: flex;
             flex-direction: column;
         }
+
         .skeleton-img {
             width: 100%;
             aspect-ratio: 1 / 1;
@@ -1090,6 +1463,7 @@
             background-size: 200% 100%;
             animation: shimmerLoading 1.5s infinite;
         }
+
         .skeleton-info {
             padding: 20px;
             display: flex;
@@ -1097,20 +1471,24 @@
             gap: 12px;
             align-items: center;
         }
+
         .skeleton-line {
             border-radius: 4px;
             background: linear-gradient(90deg, #f0f0f0 25%, #e2e2e2 50%, #f0f0f0 75%);
             background-size: 200% 100%;
             animation: shimmerLoading 1.5s infinite;
         }
+
         .skeleton-title {
             width: 75%;
             height: 16px;
         }
+
         .skeleton-price {
             width: 40%;
             height: 14px;
         }
+
         .skeleton-btn {
             width: 100%;
             height: 40px;
@@ -1120,9 +1498,15 @@
             background-size: 200% 100%;
             animation: shimmerLoading 1.5s infinite;
         }
+
         @keyframes shimmerLoading {
-            0% { background-position: 200% 0; }
-            100% { background-position: -200% 0; }
+            0% {
+                background-position: 200% 0;
+            }
+
+            100% {
+                background-position: -200% 0;
+            }
         }
 
         /* ===================================================
@@ -1152,7 +1536,7 @@
             width: 100%;
             height: auto;
             border-radius: 4px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
             object-fit: cover;
             aspect-ratio: 4/5;
             position: relative;
@@ -1170,7 +1554,9 @@
             z-index: 1;
         }
 
-        .about-text-wrapper { flex: 1; }
+        .about-text-wrapper {
+            flex: 1;
+        }
 
         .about-title {
             font-family: 'Oswald', sans-serif;
@@ -1188,7 +1574,9 @@
             color: #bbb;
         }
 
-        .about-description strong { color: var(--brand-light); }
+        .about-description strong {
+            color: var(--brand-light);
+        }
 
         .about-btn {
             margin-top: 20px;
@@ -1210,15 +1598,33 @@
         }
 
         @media (max-width: 992px) {
-            .about-container { flex-direction: column; gap: 50px; }
-            .about-text-wrapper { text-align: center; }
-            .about-image-wrapper { width: 90%; }
+            .about-container {
+                flex-direction: column;
+                gap: 50px;
+            }
+
+            .about-text-wrapper {
+                text-align: center;
+            }
+
+            .about-image-wrapper {
+                width: 90%;
+            }
         }
-        
+
         @media (max-width: 768px) {
-            .about-section { padding: 60px 5%; }
-            .about-image-wrapper::before { top: -10px; left: -10px; }
-            .about-description { font-size: 15px; }
+            .about-section {
+                padding: 60px 5%;
+            }
+
+            .about-image-wrapper::before {
+                top: -10px;
+                left: -10px;
+            }
+
+            .about-description {
+                font-size: 15px;
+            }
         }
 
         /* ===================================================
@@ -1238,7 +1644,9 @@
             align-items: flex-start;
         }
 
-        .contact-info { flex: 1; }
+        .contact-info {
+            flex: 1;
+        }
 
         .contact-desc {
             font-size: 15px;
@@ -1272,7 +1680,7 @@
             flex: 1.2;
             background: var(--white);
             padding: 40px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
             border-radius: 8px;
         }
 
@@ -1287,7 +1695,9 @@
             gap: 20px;
         }
 
-        .input-group input, .full-width-input, textarea {
+        .input-group input,
+        .full-width-input,
+        textarea {
             width: 100%;
             padding: 15px;
             border: 1px solid #ddd;
@@ -1299,7 +1709,9 @@
             border-radius: 4px;
         }
 
-        .input-group input:focus, .full-width-input:focus, textarea:focus {
+        .input-group input:focus,
+        .full-width-input:focus,
+        textarea:focus {
             border-color: var(--brand-dark);
             background: var(--white);
         }
@@ -1318,7 +1730,9 @@
             border-radius: 4px;
         }
 
-        .submit-btn:hover { background: #444; }
+        .submit-btn:hover {
+            background: #444;
+        }
 
         .footer {
             background-color: var(--brand-dark);
@@ -1332,7 +1746,7 @@
             display: grid;
             grid-template-columns: 1.8fr 1fr 1.6fr 1.3fr;
             gap: 40px;
-            border-bottom: 1px solid rgba(255,255,255,0.1);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
             padding-bottom: 50px;
         }
 
@@ -1404,7 +1818,7 @@
             width: 35px;
             height: 35px;
             border-radius: 50%;
-            background: rgba(255,255,255,0.1);
+            background: rgba(255, 255, 255, 0.1);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -1443,7 +1857,9 @@
             transition: transform 0.3s ease;
         }
 
-        .newsletter-form button:hover { transform: translateX(5px); }
+        .newsletter-form button:hover {
+            transform: translateX(5px);
+        }
 
         .footer-bottom {
             max-width: 1200px;
@@ -1463,18 +1879,50 @@
         }
 
         @media (max-width: 992px) {
-            .contact-container { flex-direction: column; }
-            .contact-form-wrapper { width: 100%; }
-            .footer-grid { grid-template-columns: repeat(2, 1fr); }
+            .contact-container {
+                flex-direction: column;
+            }
+
+            .contact-form-wrapper {
+                width: 100%;
+            }
+
+            .footer-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
         }
 
         @media (max-width: 768px) {
-            .input-group { flex-direction: column; gap: 20px; }
-            .footer-grid { grid-template-columns: 1fr; gap: 30px; text-align: center; }
-            .social-links { justify-content: center; }
-            .footer-contact-list li { justify-content: center; text-align: left; }
-            .footer-col ul li a:hover { padding-left: 0; color: var(--white); }
-            .footer-bottom { flex-direction: column; gap: 15px; text-align: center; }
+            .input-group {
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+                text-align: center;
+            }
+
+            .social-links {
+                justify-content: center;
+            }
+
+            .footer-contact-list li {
+                justify-content: center;
+                text-align: left;
+            }
+
+            .footer-col ul li a:hover {
+                padding-left: 0;
+                color: var(--white);
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
+            }
         }
 
         /* ===================================================
@@ -1482,7 +1930,10 @@
            =================================================== */
         .product-modal {
             position: fixed;
-            top: 0; left: 0; width: 100%; height: 100vh;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
             background: var(--white);
             z-index: 9999;
             overflow-y: auto;
@@ -1492,65 +1943,162 @@
             flex-direction: column;
         }
 
-        .product-modal.active { transform: translateY(0); }
+        .product-modal.active {
+            transform: translateY(0);
+        }
 
         .close-modal-btn {
             position: absolute;
-            top: 20px; left: 5%;
-            background: transparent; border: none;
-            font-size: 16px; font-weight: 600; text-transform: uppercase;
-            cursor: pointer; color: var(--brand-dark);
-            display: flex; align-items: center; gap: 10px;
+            top: 20px;
+            left: 5%;
+            background: transparent;
+            border: none;
+            font-size: 16px;
+            font-weight: 600;
+            text-transform: uppercase;
+            cursor: pointer;
+            color: var(--brand-dark);
+            display: flex;
+            align-items: center;
+            gap: 10px;
             z-index: 10;
         }
 
         .product-modal-container {
             display: flex;
-            max-width: 1200px; margin: 80px auto 40px; padding: 0 5%;
-            gap: 60px; align-items: flex-start;
+            max-width: 1200px;
+            margin: 80px auto 40px;
+            padding: 0 5%;
+            gap: 60px;
+            align-items: flex-start;
         }
 
-        .product-modal-image { flex: 1; background: #f7f7f7; padding: 40px; border-radius: 8px; display: flex; align-items: center; justify-content: center; }
-        .product-modal-image img { width: 100%; max-height: 480px; object-fit: contain; }
+        .product-modal-image {
+            flex: 1;
+            background: #f7f7f7;
+            padding: 40px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
 
-        .product-modal-details { flex: 1; display: flex; flex-direction: column; }
-        
-        .modal-category { font-size: 12px; font-weight: 700; color: #888; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 10px; }
-        .modal-title { font-family: 'Oswald', sans-serif; font-size: 38px; color: var(--brand-dark); margin-bottom: 15px; line-height: 1.1; }
-        .modal-price { font-size: 24px; font-weight: 700; color: var(--brand-dark); margin-bottom: 20px; }
-        .modal-desc { font-size: 15px; line-height: 1.8; color: #555; margin-bottom: 25px; }
-        
-        .modal-options { display: flex; flex-direction: column; gap: 15px; margin-bottom: 35px; border-top: 1px solid #eee; padding-top: 20px; }
-        .option-group h4 { font-size: 13px; color: #111; margin-bottom: 5px; text-transform: uppercase; font-weight: 700; }
-        .option-group p { font-size: 14px; color: #666; }
+        .product-modal-image img {
+            width: 100%;
+            max-height: 480px;
+            object-fit: contain;
+        }
 
-        .modal-add-btn { background: var(--brand-dark); color: var(--white); border: none; padding: 18px; font-size: 15px; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; transition: 0.3s; border-radius: 4px; }
-        .modal-add-btn:hover { background: #444; }
+        .product-modal-details {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .modal-category {
+            font-size: 12px;
+            font-weight: 700;
+            color: #888;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+        }
+
+        .modal-title {
+            font-family: 'Oswald', sans-serif;
+            font-size: 38px;
+            color: var(--brand-dark);
+            margin-bottom: 15px;
+            line-height: 1.1;
+        }
+
+        .modal-price {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--brand-dark);
+            margin-bottom: 20px;
+        }
+
+        .modal-desc {
+            font-size: 15px;
+            line-height: 1.8;
+            color: #555;
+            margin-bottom: 25px;
+        }
+
+        .modal-options {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-bottom: 35px;
+            border-top: 1px solid #eee;
+            padding-top: 20px;
+        }
+
+        .option-group h4 {
+            font-size: 13px;
+            color: #111;
+            margin-bottom: 5px;
+            text-transform: uppercase;
+            font-weight: 700;
+        }
+
+        .option-group p {
+            font-size: 14px;
+            color: #666;
+        }
+
+        .modal-add-btn {
+            background: var(--brand-dark);
+            color: var(--white);
+            border: none;
+            padding: 18px;
+            font-size: 15px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            transition: 0.3s;
+            border-radius: 4px;
+        }
+
+        .modal-add-btn:hover {
+            background: #444;
+        }
 
         @media (max-width: 992px) {
-            .product-modal-container { flex-direction: column; gap: 30px; margin-top: 60px; }
-            .modal-title { font-size: 28px; }
+            .product-modal-container {
+                flex-direction: column;
+                gap: 30px;
+                margin-top: 60px;
+            }
+
+            .modal-title {
+                font-size: 28px;
+            }
         }
     </style>
 </head>
+
 <body>
 
     <!-- ================= ANNOUNCEMENT BAR ================= -->
     <div class="announcement-bar">
         <div class="announcement-track">
-            <span>CUSTOM LEATHER PRODUCTS MADE TO ORDER &nbsp; | &nbsp; PREMIUM CRAFTSMANSHIP &nbsp; | &nbsp; 100% GENUINE LEATHER &nbsp; | &nbsp; </span>
-            <span>CUSTOM LEATHER PRODUCTS MADE TO ORDER &nbsp; | &nbsp; PREMIUM CRAFTSMANSHIP &nbsp; | &nbsp; 100% GENUINE LEATHER &nbsp; | &nbsp; </span>
+            <span>CUSTOM LEATHER PRODUCTS MADE TO ORDER &nbsp; | &nbsp; PREMIUM CRAFTSMANSHIP &nbsp; | &nbsp; 100%
+                GENUINE LEATHER &nbsp; | &nbsp; </span>
+            <span>CUSTOM LEATHER PRODUCTS MADE TO ORDER &nbsp; | &nbsp; PREMIUM CRAFTSMANSHIP &nbsp; | &nbsp; 100%
+                GENUINE LEATHER &nbsp; | &nbsp; </span>
         </div>
     </div>
 
     <!-- ================= HEADER ================= -->
     <header class="header">
-        
+
         <!-- Mobile Menu Icon (Hidden on PC) -->
         <div class="mobile-menu-btn">
             <button class="menu-btn" onclick="toggleMenu()"><i class="fas fa-bars"></i></button>
         </div>
-        
+
         <!-- Logo (Left on PC, Center on Mobile) -->
         <div class="logo-container">
             <a href="index.html"><img src="media/logo.webp" fetchpriority="high" alt="A.M LEATHER WEAR"></a>
@@ -1585,10 +2133,13 @@
             <div class="search-header">
                 <div class="search-input-box">
                     <i class="fas fa-search search-input-icon"></i>
-                    <input type="text" id="searchInput" placeholder="Search jackets, wallets, bags, belts..." autocomplete="off" oninput="handleSearch(this.value)">
-                    <button class="clear-search-btn" id="clearSearchBtn" onclick="clearSearch()"><i class="fas fa-times"></i></button>
+                    <input type="text" id="searchInput" placeholder="Search jackets, wallets, bags, belts..."
+                        autocomplete="off" oninput="handleSearch(this.value)">
+                    <button class="clear-search-btn" id="clearSearchBtn" onclick="clearSearch()"><i
+                            class="fas fa-times"></i></button>
                 </div>
-                <button class="close-search-btn" onclick="closeSearch()" title="Close"><i class="fas fa-times"></i></button>
+                <button class="close-search-btn" onclick="closeSearch()" title="Close"><i
+                        class="fas fa-times"></i></button>
             </div>
             <div class="search-status" id="searchStatus">Type something to search our collection...</div>
             <div class="search-results-grid" id="searchResultsGrid"></div>
@@ -1604,7 +2155,7 @@
             <span class="mobile-menu-title">MENU</span>
             <button class="close-btn" onclick="toggleMenu()"><i class="fas fa-times"></i></button>
         </div>
-        
+
         <div class="mobile-menu-content">
             <ul class="mobile-nav-list">
                 <!-- 1. ALL PRODUCTS -->
@@ -1614,7 +2165,7 @@
                         <i class="fas fa-arrow-right nav-arrow"></i>
                     </a>
                 </li>
-                
+
                 <!-- 2. CATEGORIES (With 4 subcategories) -->
                 <li class="mobile-nav-item has-dropdown open">
                     <div class="mobile-nav-link dropdown-toggle" onclick="toggleMobileDropdown()">
@@ -1622,14 +2173,19 @@
                         <i class="fas fa-chevron-down dropdown-arrow" id="menuDropdownArrow"></i>
                     </div>
                     <ul class="mobile-submenu" id="mobileSubmenu">
-                        <li><a href="shop.html?category=Leather Jackets" onclick="closeDrawers()"><i class="fas fa-circle"></i> Leather Jackets</a></li>
-                        <li><a href="shop.html?category=Wallets" onclick="closeDrawers()"><i class="fas fa-circle"></i> Wallets</a></li>
-                        <li><a href="shop.html?category=Bags" onclick="closeDrawers()"><i class="fas fa-circle"></i> Bags</a></li>
-                        <li><a href="shop.html?category=Belts" onclick="closeDrawers()"><i class="fas fa-circle"></i> Belts</a></li>
-                        <li><a href="shop.html?category=Others" onclick="closeDrawers()"><i class="fas fa-circle"></i> Others</a></li>
+                        <li><a href="shop.html?category=Leather Jackets" onclick="closeDrawers()"><i
+                                    class="fas fa-circle"></i> Leather Jackets</a></li>
+                        <li><a href="shop.html?category=Wallets" onclick="closeDrawers()"><i class="fas fa-circle"></i>
+                                Wallets</a></li>
+                        <li><a href="shop.html?category=Bags" onclick="closeDrawers()"><i class="fas fa-circle"></i>
+                                Bags</a></li>
+                        <li><a href="shop.html?category=Belts" onclick="closeDrawers()"><i class="fas fa-circle"></i>
+                                Belts</a></li>
+                        <li><a href="shop.html?category=Others" onclick="closeDrawers()"><i class="fas fa-circle"></i>
+                                Others</a></li>
                     </ul>
                 </li>
-                
+
                 <!-- 3. ABOUT US -->
                 <li class="mobile-nav-item">
                     <a href="#about" onclick="closeDrawers()" class="mobile-nav-link">
@@ -1637,7 +2193,7 @@
                         <i class="fas fa-arrow-right nav-arrow"></i>
                     </a>
                 </li>
-                
+
                 <!-- 4. CONTACT US -->
                 <li class="mobile-nav-item">
                     <a href="#contact" onclick="closeDrawers()" class="mobile-nav-link">
@@ -1647,15 +2203,17 @@
                 </li>
             </ul>
         </div>
-        
+
         <!-- 5. SOCIAL ICONS (Instagram, Facebook, WhatsApp) -->
         <div class="mobile-menu-footer">
             <p class="social-label">Follow & Connect</p>
             <div class="mobile-social-icons">
-                <a href="https://www.instagram.com/a.m_leather_wear/" target="_blank" class="social-icon insta" title="Instagram">
+                <a href="https://www.instagram.com/a.m_leather_wear/" target="_blank" class="social-icon insta"
+                    title="Instagram">
                     <i class="fab fa-instagram"></i>
                 </a>
-                <a href="https://www.facebook.com/share/19ND3WF5XZ/" target="_blank" class="social-icon fb" title="Facebook">
+                <a href="https://www.facebook.com/share/19ND3WF5XZ/" target="_blank" class="social-icon fb"
+                    title="Facebook">
                     <i class="fab fa-facebook-f"></i>
                 </a>
                 <a href="https://wa.me/923224383425" target="_blank" class="social-icon wa" title="WhatsApp">
@@ -1669,17 +2227,21 @@
     <div class="drawer cart-drawer" id="cartDrawer">
         <button class="close-btn" onclick="toggleCart()"><i class="fas fa-times"></i></button>
         <div class="cart-header">YOUR BAG</div>
-        
+
         <div class="cart-items" id="cartItemsContainer">
-            <p style="color: var(--accent); font-size: 14px; text-transform: uppercase; text-align: center; margin-top: 40px;">Your bag is empty.</p>
+            <p
+                style="color: var(--accent); font-size: 14px; text-transform: uppercase; text-align: center; margin-top: 40px;">
+                Your bag is empty.</p>
         </div>
-        
+
         <div class="cart-footer">
-            <div style="display: flex; justify-content: space-between; margin-bottom: 15px; font-weight: 700; color: var(--white);">
+            <div
+                style="display: flex; justify-content: space-between; margin-bottom: 15px; font-weight: 700; color: var(--white);">
                 <span>SUBTOTAL:</span>
                 <span id="cartSubtotal">Rs. 0</span>
             </div>
-            <button class="checkout-btn" onclick="proceedToCheckout()"><i class="fas fa-lock"></i> PROCEED TO CHECKOUT</button>
+            <button class="checkout-btn" onclick="proceedToCheckout()"><i class="fas fa-lock"></i> PROCEED TO
+                CHECKOUT</button>
         </div>
     </div>
 
@@ -1705,12 +2267,12 @@
     <!-- ================= 3D POPULAR SLIDER ================= -->
     <section class="popular-section">
         <h2 class="section-title">Most Popular</h2>
-        
+
         <div class="slider-3d-wrapper">
             <div class="slider-3d-container" id="slider3DContainer">
                 <!-- Dynamically Populated from Google Sheet -->
             </div>
-            
+
             <div class="carousel-nav-arrows">
                 <button class="arrow-btn" id="prevBtn3D"><i class="fas fa-arrow-left"></i></button>
                 <button class="arrow-btn" id="nextBtn3D"><i class="fas fa-arrow-right"></i></button>
@@ -1781,20 +2343,24 @@
                 </div>
             </div>
         </div>
-        
+
         <div class="view-all-container">
             <a href="shop.html?category=all" class="view-all-btn">View All Products</a>
         </div>
     </section>
 
     <!-- ================= CUSTOM LEATHER PRODUCTS ================= -->
-    <section class="custom-products-section" style="padding: 80px 20px; background: linear-gradient(135deg, #111, #222); color: #fff; text-align: center;">
+    <section class="custom-products-section"
+        style="padding: 80px 20px; background: linear-gradient(135deg, #111, #222); color: #fff; text-align: center;">
         <div style="max-width: 800px; margin: 0 auto;">
             <h2 style="font-size: 2.8rem; margin-bottom: 20px; color: #d4af37;">Design Your Custom Leather Product</h2>
             <p style="font-size: 1.2rem; line-height: 1.6; margin-bottom: 40px; color: #ccc;">
-                Can't find exactly what you're looking for? We offer bespoke, made-to-order leather goods tailored perfectly to your style and specifications. Share your vision with us, and our expert artisans will bring it to life with premium craftsmanship.
+                Can't find exactly what you're looking for? We offer bespoke, made-to-order leather goods tailored
+                perfectly to your style and specifications. Share your vision with us, and our expert artisans will
+                bring it to life with premium craftsmanship.
             </p>
-            <a href="https://wa.me/923224383425" target="_blank" style="display: inline-flex; align-items: center; justify-content: center; padding: 15px 40px; background: #25D366; color: #fff; text-decoration: none; font-size: 1.2rem; font-weight: bold; border-radius: 50px; transition: transform 0.3s ease, box-shadow 0.3s ease;">
+            <a href="https://wa.me/923224383425" target="_blank"
+                style="display: inline-flex; align-items: center; justify-content: center; padding: 15px 40px; background: #25D366; color: #fff; text-decoration: none; font-size: 1.2rem; font-weight: bold; border-radius: 50px; transition: transform 0.3s ease, box-shadow 0.3s ease;">
                 <i class="fab fa-whatsapp" style="margin-right: 12px; font-size: 1.5rem;"></i> Contact on WhatsApp
             </a>
         </div>
@@ -1806,14 +2372,18 @@
             <div class="about-image-wrapper">
                 <img src="media/about.webp" alt="A.M Leather Craftsmanship">
             </div>
-            
+
             <div class="about-text-wrapper">
                 <h2 class="about-title">The Art of Leather</h2>
                 <p class="about-description">
-                    At <strong>A.M LEATHER WEAR</strong>, we believe in the timeless appeal of genuine leather. Every jacket, wallet, belt, and bag is crafted with precision, passion, and an uncompromising dedication to quality.
+                    At <strong>A.M LEATHER WEAR</strong>, we believe in the timeless appeal of genuine leather. Every
+                    jacket, wallet, belt, and bag is crafted with precision, passion, and an uncompromising dedication
+                    to quality.
                 </p>
                 <p class="about-description">
-                    Our artisans blend modern urban design with traditional craftsmanship to create pieces that not only look stunning but age beautifully with you. Experience the true essence of premium leather designed for the modern lifestyle.
+                    Our artisans blend modern urban design with traditional craftsmanship to create pieces that not only
+                    look stunning but age beautifully with you. Experience the true essence of premium leather designed
+                    for the modern lifestyle.
                 </p>
                 <a href="shop.html?category=all"><button class="about-btn">Discover Our Story</button></a>
             </div>
@@ -1825,8 +2395,9 @@
         <div class="contact-container">
             <div class="contact-info">
                 <h2 class="section-title" style="margin-bottom: 15px; text-align: left;">Get In Touch</h2>
-                <p class="contact-desc">Have a question about our premium leather goods or need help with your order? Send us a message, and our team will get back to you shortly.</p>
-                
+                <p class="contact-desc">Have a question about our premium leather goods or need help with your order?
+                    Send us a message, and our team will get back to you shortly.</p>
+
                 <div class="info-details">
                     <div class="info-item">
                         <i class="fas fa-map-marker-alt"></i>
@@ -1838,11 +2409,13 @@
                     </div>
                     <div class="info-item">
                         <i class="fab fa-whatsapp"></i>
-                        <a href="https://wa.me/923224383425" target="_blank" style="color: inherit;"><span>+92 322 4383425</span></a>
+                        <a href="https://wa.me/923224383425" target="_blank" style="color: inherit;"><span>+92 322
+                                4383425</span></a>
                     </div>
                     <div class="info-item">
                         <i class="fas fa-envelope"></i>
-                        <a href="mailto:amfashionleathergarments@gmail.com" style="color: inherit;"><span>amfashionleathergarments@gmail.com</span></a>
+                        <a href="mailto:amfashionleathergarments@gmail.com"
+                            style="color: inherit;"><span>amfashionleathergarments@gmail.com</span></a>
                     </div>
                 </div>
             </div>
@@ -1866,12 +2439,17 @@
         <div class="footer-grid">
             <div class="footer-col brand-col">
                 <h3>A.M LEATHER</h3>
-                <p>Crafting premium leather jackets, bags, and accessories for the modern lifestyle. Built for every season, designed for you.</p>
+                <p>Crafting premium leather jackets, bags, and accessories for the modern lifestyle. Built for every
+                    season, designed for you.</p>
                 <div class="social-links">
-                    <a href="https://www.facebook.com/share/19ND3WF5XZ/" target="_blank" title="Facebook"><i class="fab fa-facebook-f"></i></a>
-                    <a href="https://wa.me/923224383425" target="_blank" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
-                    <a href="mailto:amfashionleathergarments@gmail.com" title="Email"><i class="fas fa-envelope"></i></a>
-                    <a href="https://www.instagram.com/a.m_leather_wear/" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.facebook.com/share/19ND3WF5XZ/" target="_blank" title="Facebook"><i
+                            class="fab fa-facebook-f"></i></a>
+                    <a href="https://wa.me/923224383425" target="_blank" title="WhatsApp"><i
+                            class="fab fa-whatsapp"></i></a>
+                    <a href="mailto:amfashionleathergarments@gmail.com" title="Email"><i
+                            class="fas fa-envelope"></i></a>
+                    <a href="https://www.instagram.com/a.m_leather_wear/" target="_blank" title="Instagram"><i
+                            class="fab fa-instagram"></i></a>
                 </div>
             </div>
 
@@ -1889,10 +2467,13 @@
             <div class="footer-col contact-col">
                 <h4>Contact Info</h4>
                 <ul class="footer-contact-list">
-                    <li><i class="fas fa-map-marker-alt"></i> <span>DHA Phase 8 Ex Park View, Lahore, Pakistan-54000</span></li>
+                    <li><i class="fas fa-map-marker-alt"></i> <span>DHA Phase 8 Ex Park View, Lahore,
+                            Pakistan-54000</span></li>
                     <li><i class="fas fa-phone-alt"></i> <a href="tel:03224383425">0322 4383425</a></li>
-                    <li><i class="fab fa-whatsapp"></i> <a href="https://wa.me/923224383425" target="_blank">+92 322 4383425</a></li>
-                    <li><i class="fas fa-envelope"></i> <a href="mailto:amfashionleathergarments@gmail.com">amfashionleathergarments@gmail.com</a></li>
+                    <li><i class="fab fa-whatsapp"></i> <a href="https://wa.me/923224383425" target="_blank">+92 322
+                            4383425</a></li>
+                    <li><i class="fas fa-envelope"></i> <a
+                            href="mailto:amfashionleathergarments@gmail.com">amfashionleathergarments@gmail.com</a></li>
                 </ul>
             </div>
 
@@ -1905,7 +2486,7 @@
                 </form>
             </div>
         </div>
-        
+
         <div class="footer-bottom">
             <p>&copy; 2026 A.M LEATHER WEAR. All Rights Reserved.</p>
             <div class="payment-icons">
@@ -1929,8 +2510,9 @@
                 <h1 class="modal-title" id="modalTitle">Product Title</h1>
                 <div class="modal-price" id="modalPrice">Rs. 0</div>
                 <p class="modal-desc" id="modalDesc">Product description will load here.</p>
-                <p class="modal-stock" id="modalStock" style="font-weight: 600; margin-top: 15px; font-size: 1.1rem;"></p>
-                
+                <p class="modal-stock" id="modalStock" style="font-weight: 600; margin-top: 15px; font-size: 1.1rem;">
+                </p>
+
                 <div class="modal-options">
                     <div class="option-group">
                         <h4>Available Sizes:</h4>
@@ -1945,10 +2527,13 @@
                         <p id="modalMaterial">100% Genuine Leather</p>
                     </div>
                 </div>
-                
+
                 <div style="display: flex; gap: 15px; margin-top: 25px; width: 100%;">
-                    <button class="modal-add-btn" onclick="addToCartFromModal()" style="flex: 1; margin-top: 0;">ADD TO CART</button>
-                    <button class="modal-buy-btn" onclick="buyNowFromModal()" style="flex: 1; background: #c0392b; color: white; border: none; padding: 15px 20px; font-size: 1rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; cursor: pointer; transition: 0.3s; border-radius: 0;">BUY NOW</button>
+                    <button class="modal-add-btn" onclick="addToCartFromModal()" style="flex: 1; margin-top: 0;">ADD TO
+                        CART</button>
+                    <button class="modal-buy-btn" onclick="buyNowFromModal()"
+                        style="flex: 1; background: #c0392b; color: white; border: none; padding: 15px 20px; font-size: 1rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; cursor: pointer; transition: 0.3s; border-radius: 0;">BUY
+                        NOW</button>
                 </div>
             </div>
         </div>
@@ -1983,7 +2568,7 @@
                     uniqueCategories.push(cat);
                 }
             });
-            
+
             // 1. Update Desktop Nav
             const desktopNavUl = document.querySelector('.desktop-nav ul');
             if (desktopNavUl) {
@@ -2007,7 +2592,7 @@
             // 3. Update Footer
             const footerLinks = document.querySelectorAll('.footer-col ul, .shop-footer-col ul');
             footerLinks.forEach(ul => {
-                if(ul.innerHTML.includes('Leather Jackets') || ul.innerHTML.includes('Wallets')) {
+                if (ul.innerHTML.includes('Leather Jackets') || ul.innerHTML.includes('Wallets')) {
                     let html = '';
                     uniqueCategories.forEach(cat => {
                         html += '<li><a href="shop.html?category=' + encodeURIComponent(cat) + '">' + cat + '</a></li>';
@@ -2091,7 +2676,7 @@
         // --- Toast Notifications ---
         function showToast(message) {
             const existingToast = document.querySelector('.custom-toast');
-            if(existingToast) existingToast.remove();
+            if (existingToast) existingToast.remove();
             const toast = document.createElement('div');
             toast.className = 'custom-toast';
             toast.innerText = message;
@@ -2103,7 +2688,7 @@
             });
             document.body.appendChild(toast);
             setTimeout(() => { toast.style.opacity = '1'; toast.style.transform = 'translateY(0)'; }, 10);
-            setTimeout(() => { toast.style.opacity = '0'; toast.style.transform = 'translateY(20px)'; setTimeout(() => toast.remove(), 300); }, 3000); 
+            setTimeout(() => { toast.style.opacity = '0'; toast.style.transform = 'translateY(20px)'; setTimeout(() => toast.remove(), 300); }, 3000);
         }
 
         // --- Drive Link Converter (Google High-Speed Global Image CDN) ---
@@ -2116,13 +2701,13 @@
                     return `https://drive.google.com/thumbnail?id=${idMatch[1]}&sz=${size}`;
                 }
             }
-            return url; 
+            return url;
         }
 
         // --- Cart Management ---
         function addToCart(index) {
             const product = allFetchedProducts[index];
-            if(!product) return;
+            if (!product) return;
 
             const title = product['Product Title'] || product['title'] || 'Unknown Product';
             const price = parseFloat(product['Regular Price (Rs.)'] || product['price']) || 0;
@@ -2130,7 +2715,7 @@
             const image = convertDriveLink(rawImage) || 'media/product_1.webp';
 
             const existingItem = cartArray.find(item => item.title === title);
-            if(existingItem) {
+            if (existingItem) {
                 existingItem.quantity += 1;
             } else {
                 cartArray.push({ title, price, image, quantity: 1 });
@@ -2142,7 +2727,7 @@
 
         function changeQuantity(cartIndex, amount) {
             cartArray[cartIndex].quantity += amount;
-            if(cartArray[cartIndex].quantity <= 0) {
+            if (cartArray[cartIndex].quantity <= 0) {
                 cartArray.splice(cartIndex, 1);
             }
             saveAndSyncCart();
@@ -2162,18 +2747,18 @@
             const container = document.getElementById('cartItemsContainer');
             const counters = document.querySelectorAll('.cart-count');
             const subtotalText = document.getElementById('cartSubtotal');
-            
+
             const totalCount = cartArray.reduce((sum, item) => sum + item.quantity, 0);
-            
+
             counters.forEach(counter => {
                 counter.innerText = totalCount;
             });
-            
-            if(!container) return;
 
-            if(cartArray.length === 0) {
+            if (!container) return;
+
+            if (cartArray.length === 0) {
                 container.innerHTML = `<p style="color: var(--accent); font-size: 14px; text-transform: uppercase; text-align: center; margin-top: 40px;">Your bag is empty.</p>`;
-                if(subtotalText) subtotalText.innerText = `Rs. 0`;
+                if (subtotalText) subtotalText.innerText = `Rs. 0`;
                 return;
             }
 
@@ -2198,7 +2783,7 @@
                 `;
             });
             container.innerHTML = html;
-            if(subtotalText) subtotalText.innerText = `Rs. ${total.toLocaleString()}`;
+            if (subtotalText) subtotalText.innerText = `Rs. ${total.toLocaleString()}`;
         }
 
         // --- Checkout Redirection ---
@@ -2213,7 +2798,7 @@
         // --- Product Modal Logic ---
         function openProductPage(index) {
             const product = allFetchedProducts[index];
-            if(!product) return;
+            if (!product) return;
             currentlyViewingIndex = index;
 
             const keys = Object.keys(product);
@@ -2222,7 +2807,7 @@
                 return key ? product[key] : '';
             };
 
-            const title = getVal('title') || getVal('name') || 'Leather Product'; 
+            const title = getVal('title') || getVal('name') || 'Leather Product';
             const price = getVal('price');
             const desc = getVal('description') || 'Handcrafted from 100% genuine leather with precision tailoring.';
             const category = getVal('category') || 'Leather Goods';
@@ -2231,7 +2816,7 @@
             const material = getVal('material') || '100% Genuine Leather';
             const rawImage = getVal('image') || getVal('picture');
             const stockQty = getVal('stock') || getVal('quantity') || '0';
-            
+
             document.getElementById('modalImage').src = convertDriveLink(rawImage, 'w1000') || 'media/product_1.webp';
             document.getElementById('modalTitle').innerText = title;
             document.getElementById('modalPrice').innerText = price ? `Rs. ${price}` : '';
@@ -2263,7 +2848,7 @@
 
         function closeProductPage() {
             document.getElementById('productModal').classList.remove('active');
-            document.body.style.overflow = 'auto'; 
+            document.body.style.overflow = 'auto';
         }
 
         function addToCartFromModal() {
@@ -2274,7 +2859,7 @@
 
         function buyNowFromModal() {
             cartArray = [];
-            addToCart(currentlyViewingIndex); 
+            addToCart(currentlyViewingIndex);
             window.location.href = 'checkout.html';
         }
 
@@ -2312,7 +2897,7 @@
             const status = document.getElementById('searchStatus');
             const grid = document.getElementById('searchResultsGrid');
             const clearBtn = document.getElementById('clearSearchBtn');
-            
+
             const trimmed = query.trim().toLowerCase();
             if (!trimmed) {
                 clearBtn.style.display = 'none';
@@ -2320,9 +2905,9 @@
                 grid.innerHTML = '';
                 return;
             }
-            
+
             clearBtn.style.display = 'block';
-            
+
             const results = allFetchedProducts.filter(p => {
                 const title = (p['Product Title'] || p['title'] || '').toLowerCase();
                 const desc = (p['Product Description'] || p['description'] || '').toLowerCase();
@@ -2330,13 +2915,13 @@
                 const tag = (p['Product Tag / Badge'] || p['badge'] || '').toLowerCase();
                 return title.includes(trimmed) || desc.includes(trimmed) || cat.includes(trimmed) || tag.includes(trimmed);
             });
-            
+
             if (results.length === 0) {
                 status.innerText = `No products found matching "${query}"`;
                 grid.innerHTML = '';
                 return;
             }
-            
+
             status.innerText = `Found ${results.length} product${results.length > 1 ? 's' : ''}:`;
             let html = '';
             results.forEach(product => {
@@ -2346,7 +2931,7 @@
                 const cat = product['Product Category'] || product['Category'] || product['category'] || 'Leather Goods';
                 const rawImg = product['Main Product Image  (Only 1)'] || product['image'] || '';
                 const imgUrl = convertDriveLink(rawImg, 'w400') || 'media/product_1.webp';
-                
+
                 html += `
                     <div class="search-item-card" onclick="openProductPageFromSearch(${originalIndex})">
                         <div class="search-item-thumb">
@@ -2386,7 +2971,7 @@
                         renderProducts(allFetchedProducts);
                     }
                 }
-            } catch(e) {
+            } catch (e) {
                 console.warn("Cache read error:", e);
             }
 
@@ -2395,20 +2980,20 @@
                 download: true,
                 header: true,
                 skipEmptyLines: true,
-                transformHeader: function(header) { return header.trim(); },
-                complete: function(results) {
-                    const freshProducts = results.data.filter(p => p['Product Title'] && p['Product Title'].trim() !== ''); 
+                transformHeader: function (header) { return header.trim(); },
+                complete: function (results) {
+                    const freshProducts = results.data.filter(p => p['Product Title'] && p['Product Title'].trim() !== '');
                     if (freshProducts.length > 0) {
                         allFetchedProducts = freshProducts;
                         populateCategories(allFetchedProducts);
                         try {
                             localStorage.setItem('am_products_cache', JSON.stringify(freshProducts));
-                        } catch(e) {}
+                        } catch (e) { }
                         renderProducts(allFetchedProducts);
                     }
                 },
-                error: function(error) { 
-                    console.error("Google Sheet CSV Fetch Error:", error); 
+                error: function (error) {
+                    console.error("Google Sheet CSV Fetch Error:", error);
                 }
             });
 
@@ -2418,18 +3003,18 @@
 
                 // Last 5 products for 3D Slider
                 const sliderProducts = products.slice(-5);
-                
+
                 // Top 8 products for Catalog
                 const catalogProducts = products.slice(0, 8);
 
                 // 1. Render 3D Slider
                 sliderProducts.forEach((product) => {
-                    const originalIndex = products.indexOf(product); 
-                    const title = product['Product Title']; 
+                    const originalIndex = products.indexOf(product);
+                    const title = product['Product Title'];
                     const price = product['Regular Price (Rs.)'];
-                    const rawImage = product['Main Product Image  (Only 1)']; 
-                    
-                    let finalImageUrl = convertDriveLink(rawImage) || 'media/product_1.webp'; 
+                    const rawImage = product['Main Product Image  (Only 1)'];
+
+                    let finalImageUrl = convertDriveLink(rawImage) || 'media/product_1.webp';
                     let priceString = price ? `Rs. ${price}` : '';
 
                     sliderHTML += `
@@ -2446,20 +3031,20 @@
 
                 // 2. Render Catalog
                 catalogProducts.forEach((product) => {
-                    const originalIndex = products.indexOf(product); 
-                    const title = product['Product Title']; 
+                    const originalIndex = products.indexOf(product);
+                    const title = product['Product Title'];
                     const price = product['Regular Price (Rs.)'];
                     const tag = product['Product Tag / Badge'];
-                    const rawImage = product['Main Product Image  (Only 1)']; 
+                    const rawImage = product['Main Product Image  (Only 1)'];
 
-                    let finalImageUrl = convertDriveLink(rawImage, 'w400') || 'media/product_1.webp'; 
+                    let finalImageUrl = convertDriveLink(rawImage, 'w400') || 'media/product_1.webp';
                     let priceString = price ? `Rs. ${price}` : '';
 
                     let badgeHTML = '';
-                    if(tag && tag.toLowerCase() !== 'none' && tag.trim() !== '') {
+                    if (tag && tag.toLowerCase() !== 'none' && tag.trim() !== '') {
                         let badgeClass = 'badge-new';
-                        if(tag.toLowerCase().includes('trending')) badgeClass = 'badge-hot';
-                        if(tag.toLowerCase().includes('best seller')) badgeClass = 'badge-best';
+                        if (tag.toLowerCase().includes('trending')) badgeClass = 'badge-hot';
+                        if (tag.toLowerCase().includes('best seller')) badgeClass = 'badge-best';
                         badgeHTML = `<span class="product-badge ${badgeClass}">${tag}</span>`;
                     }
 
@@ -2478,12 +3063,12 @@
                     `;
                 });
 
-                if(sliderContainer) sliderContainer.innerHTML = sliderHTML;
-                if(catalogGrid) catalogGrid.innerHTML = catalogHTML;
+                if (sliderContainer) sliderContainer.innerHTML = sliderHTML;
+                if (catalogGrid) catalogGrid.innerHTML = catalogHTML;
                 const indexLoader = document.getElementById('indexCatalogLoader');
                 if (indexLoader) indexLoader.style.display = 'none';
 
-                if(sliderProducts.length > 0) init3DSlider();
+                if (sliderProducts.length > 0) init3DSlider();
             }
         }
 
@@ -2493,13 +3078,13 @@
             const prevArrow = document.getElementById('prevBtn3D');
             const nextArrow = document.getElementById('nextBtn3D');
             let currentIndex = 0;
-            let autoPlayTimer; 
+            let autoPlayTimer;
 
-            if(sliderItems.length === 0) return;
+            if (sliderItems.length === 0) return;
 
             function render3DSlider() {
                 sliderItems.forEach((item, index) => {
-                    item.className = 'slider-3d-item'; 
+                    item.className = 'slider-3d-item';
                     if (index === currentIndex) item.classList.add('active');
                     else if (index === (currentIndex + 1) % sliderItems.length) item.classList.add('next');
                     else if (index === (currentIndex - 1 + sliderItems.length) % sliderItems.length) item.classList.add('prev');
@@ -2509,37 +3094,37 @@
             }
 
             function startAutoPlay() {
-                autoPlayTimer = setInterval(() => { 
-                    currentIndex = (currentIndex + 1) % sliderItems.length; 
-                    render3DSlider(); 
-                }, 3000); 
+                autoPlayTimer = setInterval(() => {
+                    currentIndex = (currentIndex + 1) % sliderItems.length;
+                    render3DSlider();
+                }, 3000);
             }
-            function resetAutoPlay() { 
-                clearInterval(autoPlayTimer); 
-                startAutoPlay(); 
+            function resetAutoPlay() {
+                clearInterval(autoPlayTimer);
+                startAutoPlay();
             }
 
-            if(nextArrow) {
-                nextArrow.addEventListener('click', () => { 
-                    currentIndex = (currentIndex + 1) % sliderItems.length; 
-                    render3DSlider(); 
-                    resetAutoPlay(); 
+            if (nextArrow) {
+                nextArrow.addEventListener('click', () => {
+                    currentIndex = (currentIndex + 1) % sliderItems.length;
+                    render3DSlider();
+                    resetAutoPlay();
                 });
             }
-            if(prevArrow) {
-                prevArrow.addEventListener('click', () => { 
-                    currentIndex = (currentIndex - 1 + sliderItems.length) % sliderItems.length; 
-                    render3DSlider(); 
-                    resetAutoPlay(); 
+            if (prevArrow) {
+                prevArrow.addEventListener('click', () => {
+                    currentIndex = (currentIndex - 1 + sliderItems.length) % sliderItems.length;
+                    render3DSlider();
+                    resetAutoPlay();
                 });
             }
 
             sliderItems.forEach((item, index) => {
                 item.addEventListener('click', (e) => {
                     if (index !== currentIndex && !e.target.classList.contains('buy-now-btn')) {
-                        currentIndex = index; 
-                        render3DSlider(); 
-                        resetAutoPlay(); 
+                        currentIndex = index;
+                        render3DSlider();
+                        resetAutoPlay();
                     }
                 });
             });
@@ -2586,4 +3171,5 @@
         }
     </script>
 </body>
+
 </html>
