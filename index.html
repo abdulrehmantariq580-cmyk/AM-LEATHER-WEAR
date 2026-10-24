@@ -451,6 +451,33 @@
             font-weight: 700;
             color: var(--brand-light);
             margin-top: 2px;
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 6px 8px;
+        }
+
+        .search-item-price .search-price-current {
+            color: #fff;
+            font-weight: 700;
+        }
+
+        .search-item-price .search-price-old,
+        .search-item-price del {
+            color: #999;
+            font-size: 12px;
+            font-weight: 400;
+            text-decoration: line-through;
+        }
+
+        .search-item-price .search-price-discount {
+            color: #ff6b6b;
+            background: rgba(255, 107, 107, 0.15);
+            border: 1px solid rgba(255, 107, 107, 0.3);
+            padding: 1px 5px;
+            border-radius: 3px;
+            font-size: 10.5px;
+            font-weight: 700;
         }
 
         .search-item-arrow {
@@ -794,6 +821,18 @@
         .cart-item-price {
             font-size: 12px;
             color: #aaa;
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 4px;
+        }
+
+        .cart-item-old-price,
+        .cart-item-old-price del {
+            color: #777;
+            text-decoration: line-through;
+            font-size: 11px;
+            font-weight: normal;
         }
 
         .cart-quantity-controls {
@@ -1098,11 +1137,41 @@
             margin-bottom: 5px;
         }
 
-        .slider-3d-info p {
+        .slider-3d-info p,
+        .slider-3d-info .slider-3d-price {
             font-size: 16px;
             color: #666;
             font-weight: 600;
             margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .slider-3d-info .slider-3d-price .price-current {
+            font-size: 18px;
+            font-weight: 700;
+            color: #111;
+        }
+
+        .slider-3d-info .slider-3d-price .price-old,
+        .slider-3d-info .slider-3d-price del {
+            font-size: 14px;
+            color: #888;
+            font-weight: 500;
+            text-decoration: line-through;
+        }
+
+        .slider-3d-info .slider-3d-price .price-badge-discount {
+            font-size: 11px;
+            font-weight: 700;
+            color: #fff;
+            background: #c0392b;
+            padding: 2px 7px;
+            border-radius: 3px;
+            text-transform: uppercase;
         }
 
         .buy-now-btn {
@@ -1284,6 +1353,11 @@
             color: #fff;
         }
 
+        .badge-sale {
+            background: #c0392b;
+            color: #fff;
+        }
+
         .product-img-wrapper img {
             width: 100%;
             height: 100%;
@@ -1318,9 +1392,40 @@
 
         .product-info .price {
             font-size: 15px;
-            color: #555;
+            color: #333;
             font-weight: 700;
             margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 6px 8px;
+        }
+
+        .product-info .price .price-current {
+            color: #1a1a1a;
+            font-weight: 700;
+        }
+
+        .product-info .price .price-old,
+        .product-info .price del {
+            color: #888;
+            font-size: 13px;
+            font-weight: 500;
+            text-decoration: line-through;
+        }
+
+        .product-info .price .price-badge-discount {
+            font-size: 11px;
+            font-weight: 700;
+            color: #b12704;
+            background: #ffebe8;
+            border: 1px solid #ffd0c7;
+            padding: 1px 6px;
+            border-radius: 3px;
+            letter-spacing: 0.3px;
+            line-height: 1.3;
+            display: inline-block;
         }
 
         .add-to-cart-btn {
@@ -1396,8 +1501,19 @@
             }
 
             .product-info .price {
-                font-size: 14px;
+                font-size: 13.5px;
                 margin-bottom: 10px;
+                gap: 4px 6px;
+            }
+
+            .product-info .price .price-old,
+            .product-info .price del {
+                font-size: 11.5px;
+            }
+
+            .product-info .price .price-badge-discount {
+                font-size: 10px;
+                padding: 1px 4px;
             }
 
             .product-badge {
@@ -2017,6 +2133,38 @@
             font-weight: 700;
             color: var(--brand-dark);
             margin-bottom: 20px;
+            display: flex;
+            align-items: baseline;
+            flex-wrap: wrap;
+            gap: 10px 14px;
+        }
+
+        .modal-price .modal-price-current {
+            font-family: 'Oswald', sans-serif;
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--brand-dark);
+            letter-spacing: 0.5px;
+        }
+
+        .modal-price .modal-price-old,
+        .modal-price del {
+            font-size: 18px;
+            font-weight: 500;
+            color: #888;
+            text-decoration: line-through;
+        }
+
+        .modal-price .modal-price-badge {
+            font-size: 12px;
+            font-weight: 700;
+            color: #fff;
+            background: #c0392b;
+            padding: 3px 9px;
+            border-radius: 4px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            transform: translateY(-2px);
         }
 
         .modal-desc {
@@ -2704,21 +2852,131 @@
             return url;
         }
 
+        // --- Price Calculation & Strikethrough Helper ---
+        function getProductPriceInfo(product) {
+            if (!product) {
+                return { regularPrice: 0, salePrice: 0, currentPrice: 0, originalPrice: 0, hasDiscount: false, discountPercent: 0 };
+            }
+
+            const parseNum = (val) => {
+                if (val === undefined || val === null) return 0;
+                const cleaned = String(val).replace(/[^0-9.]/g, '');
+                const num = parseFloat(cleaned);
+                return isNaN(num) ? 0 : num;
+            };
+
+            const getField = (exactKeys, fallbackKeywords) => {
+                for (const k of exactKeys) {
+                    if (product[k] !== undefined && product[k] !== null && String(product[k]).trim() !== '') {
+                        return product[k];
+                    }
+                }
+                const objKeys = Object.keys(product);
+                for (const word of fallbackKeywords) {
+                    const foundKey = objKeys.find(k => k.toLowerCase().includes(word.toLowerCase()));
+                    if (foundKey && product[foundKey] !== undefined && product[foundKey] !== null && String(product[foundKey]).trim() !== '') {
+                        return product[foundKey];
+                    }
+                }
+                return '';
+            };
+
+            const regularVal = getField(
+                ['Regular Price (Rs.)', 'Regular Price', 'regular_price', 'price'],
+                ['regular price']
+            ) || product['price'] || '';
+
+            const saleVal = getField(
+                ['Discounted/Sale Price (Rs.)', 'Discounted Price (Rs.)', 'Sale Price (Rs.)', 'Discounted/Sale Price', 'Discounted Price', 'Sale Price', 'sale_price', 'discount_price'],
+                ['discounted', 'sale price', 'discount price']
+            );
+
+            const regular = parseNum(regularVal);
+            const sale = parseNum(saleVal);
+
+            // Valid discount: sale > 0, regular > 0, and sale < regular
+            const hasDiscount = sale > 0 && regular > 0 && sale < regular;
+            const currentPrice = hasDiscount ? sale : (regular > 0 ? regular : sale);
+            const originalPrice = hasDiscount ? regular : 0;
+            const discountPercent = hasDiscount ? Math.round(((regular - sale) / regular) * 100) : 0;
+
+            return {
+                regularPrice: regular,
+                salePrice: sale,
+                currentPrice: currentPrice,
+                originalPrice: originalPrice,
+                hasDiscount: hasDiscount,
+                discountPercent: discountPercent
+            };
+        }
+
+        function formatPriceHTML(product, context = 'card') {
+            const info = getProductPriceInfo(product);
+            if (info.currentPrice <= 0 && info.regularPrice <= 0) return '';
+
+            if (context === 'modal') {
+                if (info.hasDiscount) {
+                    return `
+                        <span class="modal-price-current">Rs. ${info.currentPrice.toLocaleString()}</span>
+                        <span class="modal-price-old"><del>Rs. ${info.originalPrice.toLocaleString()}</del></span>
+                        <span class="modal-price-badge">${info.discountPercent}% OFF</span>
+                    `;
+                }
+                return `<span class="modal-price-current">Rs. ${info.currentPrice.toLocaleString()}</span>`;
+            }
+
+            if (context === 'slider') {
+                if (info.hasDiscount) {
+                    return `
+                        <span class="price-current">Rs. ${info.currentPrice.toLocaleString()}</span>
+                        <span class="price-old"><del>Rs. ${info.originalPrice.toLocaleString()}</del></span>
+                        <span class="price-badge-discount">${info.discountPercent}% OFF</span>
+                    `;
+                }
+                return `<span class="price-current">Rs. ${info.currentPrice.toLocaleString()}</span>`;
+            }
+
+            if (context === 'search') {
+                if (info.hasDiscount) {
+                    return `
+                        <span class="search-price-current">Rs. ${info.currentPrice.toLocaleString()}</span>
+                        <span class="search-price-old"><del>Rs. ${info.originalPrice.toLocaleString()}</del></span>
+                        <span class="search-price-discount">${info.discountPercent}% OFF</span>
+                    `;
+                }
+                return `<span class="search-price-current">Rs. ${info.currentPrice.toLocaleString()}</span>`;
+            }
+
+            // Default: 'card'
+            if (info.hasDiscount) {
+                return `
+                    <span class="price-current">Rs. ${info.currentPrice.toLocaleString()}</span>
+                    <span class="price-old"><del>Rs. ${info.originalPrice.toLocaleString()}</del></span>
+                    <span class="price-badge-discount">${info.discountPercent}% OFF</span>
+                `;
+            }
+            return `<span class="price-current">Rs. ${info.currentPrice.toLocaleString()}</span>`;
+        }
+
         // --- Cart Management ---
         function addToCart(index) {
             const product = allFetchedProducts[index];
             if (!product) return;
 
             const title = product['Product Title'] || product['title'] || 'Unknown Product';
-            const price = parseFloat(product['Regular Price (Rs.)'] || product['price']) || 0;
+            const priceInfo = getProductPriceInfo(product);
+            const price = priceInfo.currentPrice;
+            const originalPrice = priceInfo.hasDiscount ? priceInfo.originalPrice : 0;
             const rawImage = product['Main Product Image  (Only 1)'] || product['image'] || '';
             const image = convertDriveLink(rawImage) || 'media/product_1.webp';
 
             const existingItem = cartArray.find(item => item.title === title);
             if (existingItem) {
                 existingItem.quantity += 1;
+                existingItem.price = price;
+                existingItem.originalPrice = originalPrice;
             } else {
-                cartArray.push({ title, price, image, quantity: 1 });
+                cartArray.push({ title, price, originalPrice, image, quantity: 1 });
             }
 
             saveAndSyncCart();
@@ -2766,12 +3024,16 @@
             let total = 0;
             cartArray.forEach((item, idx) => {
                 total += (item.price * item.quantity);
+                const hasItemDiscount = item.originalPrice && item.originalPrice > item.price;
+                const strikeHTML = hasItemDiscount
+                    ? `<span class="cart-item-old-price"><del>Rs. ${item.originalPrice.toLocaleString()}</del></span>`
+                    : '';
                 html += `
                     <div class="cart-item">
                         <img src="${item.image}" alt="${item.title}">
                         <div class="cart-item-details">
                             <div class="cart-item-title">${item.title}</div>
-                            <div class="cart-item-price">Rs. ${item.price} x ${item.quantity}</div>
+                            <div class="cart-item-price">Rs. ${item.price.toLocaleString()} ${strikeHTML} x ${item.quantity}</div>
                             <div class="cart-quantity-controls">
                                 <button class="qty-btn" onclick="changeQuantity(${idx}, -1)">-</button>
                                 <span class="cart-item-qty">${item.quantity}</span>
@@ -2808,7 +3070,6 @@
             };
 
             const title = getVal('title') || getVal('name') || 'Leather Product';
-            const price = getVal('price');
             const desc = getVal('description') || 'Handcrafted from 100% genuine leather with precision tailoring.';
             const category = getVal('category') || 'Leather Goods';
             const sizes = getVal('sizes') || 'Standard';
@@ -2819,7 +3080,7 @@
 
             document.getElementById('modalImage').src = convertDriveLink(rawImage, 'w1000') || 'media/product_1.webp';
             document.getElementById('modalTitle').innerText = title;
-            document.getElementById('modalPrice').innerText = price ? `Rs. ${price}` : '';
+            document.getElementById('modalPrice').innerHTML = formatPriceHTML(product, 'modal');
             document.getElementById('modalDesc').innerText = desc;
             document.getElementById('modalCategory').innerText = category;
             document.getElementById('modalSizes').innerText = sizes;
@@ -2927,7 +3188,7 @@
             results.forEach(product => {
                 const originalIndex = allFetchedProducts.indexOf(product);
                 const title = product['Product Title'] || product['title'] || 'Product';
-                const price = product['Regular Price (Rs.)'] || product['price'] || '';
+                const priceHTML = formatPriceHTML(product, 'search');
                 const cat = product['Product Category'] || product['Category'] || product['category'] || 'Leather Goods';
                 const rawImg = product['Main Product Image  (Only 1)'] || product['image'] || '';
                 const imgUrl = convertDriveLink(rawImg, 'w400') || 'media/product_1.webp';
@@ -2940,7 +3201,7 @@
                         <div class="search-item-info">
                             <span class="search-item-cat">${cat}</span>
                             <h4 class="search-item-title">${title}</h4>
-                            <div class="search-item-price">${price ? 'Rs. ' + price : ''}</div>
+                            <div class="search-item-price">${priceHTML}</div>
                         </div>
                         <div class="search-item-arrow">
                             <i class="fas fa-chevron-right"></i>
@@ -3011,18 +3272,18 @@
                 sliderProducts.forEach((product) => {
                     const originalIndex = products.indexOf(product);
                     const title = product['Product Title'];
-                    const price = product['Regular Price (Rs.)'];
+                    const priceInfo = getProductPriceInfo(product);
                     const rawImage = product['Main Product Image  (Only 1)'];
 
                     let finalImageUrl = convertDriveLink(rawImage) || 'media/product_1.webp';
-                    let priceString = price ? `Rs. ${price}` : '';
+                    let priceHTML = formatPriceHTML(product, 'slider');
 
                     sliderHTML += `
                         <div class="slider-3d-item" onclick="openProductPage(${originalIndex})" style="cursor:pointer;">
                             <img src="${finalImageUrl}" alt="${title}" decoding="async" onload="this.classList.add('loaded')">
                             <div class="slider-3d-info">
                                 <h3>${title}</h3>
-                                <p>${priceString}</p>
+                                <div class="slider-3d-price">${priceHTML}</div>
                                 <button class="buy-now-btn" onclick="event.stopPropagation(); addToCart(${originalIndex}); toggleCart();">BUY NOW</button>
                             </div>
                         </div>
@@ -3033,12 +3294,12 @@
                 catalogProducts.forEach((product) => {
                     const originalIndex = products.indexOf(product);
                     const title = product['Product Title'];
-                    const price = product['Regular Price (Rs.)'];
+                    const priceInfo = getProductPriceInfo(product);
                     const tag = product['Product Tag / Badge'];
                     const rawImage = product['Main Product Image  (Only 1)'];
 
                     let finalImageUrl = convertDriveLink(rawImage, 'w400') || 'media/product_1.webp';
-                    let priceString = price ? `Rs. ${price}` : '';
+                    let priceHTML = formatPriceHTML(product, 'card');
 
                     let badgeHTML = '';
                     if (tag && tag.toLowerCase() !== 'none' && tag.trim() !== '') {
@@ -3046,6 +3307,8 @@
                         if (tag.toLowerCase().includes('trending')) badgeClass = 'badge-hot';
                         if (tag.toLowerCase().includes('best seller')) badgeClass = 'badge-best';
                         badgeHTML = `<span class="product-badge ${badgeClass}">${tag}</span>`;
+                    } else if (priceInfo.hasDiscount) {
+                        badgeHTML = `<span class="product-badge badge-sale">SALE</span>`;
                     }
 
                     catalogHTML += `
@@ -3056,7 +3319,7 @@
                             </div>
                             <div class="product-info">
                                 <h3>${title}</h3>
-                                <p class="price">${priceString}</p>
+                                <div class="price">${priceHTML}</div>
                                 <button class="add-to-cart-btn" onclick="event.stopPropagation(); addToCart(${originalIndex}); toggleCart();">Add to Cart</button>
                             </div>
                         </div>

@@ -320,6 +320,30 @@
             font-weight: 700;
             color: var(--brand-light);
             margin-top: 2px;
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 6px 8px;
+        }
+        .search-item-price .search-price-current {
+            color: #fff;
+            font-weight: 700;
+        }
+        .search-item-price .search-price-old,
+        .search-item-price del {
+            color: #999;
+            font-size: 12px;
+            font-weight: 400;
+            text-decoration: line-through;
+        }
+        .search-item-price .search-price-discount {
+            color: #ff6b6b;
+            background: rgba(255, 107, 107, 0.15);
+            border: 1px solid rgba(255, 107, 107, 0.3);
+            padding: 1px 5px;
+            border-radius: 3px;
+            font-size: 10.5px;
+            font-weight: 700;
         }
         .search-item-arrow {
             color: #888;
@@ -603,6 +627,18 @@
         .cart-item-price {
             font-size: 12px;
             color: #aaa;
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 4px;
+        }
+
+        .cart-item-old-price,
+        .cart-item-old-price del {
+            color: #777;
+            text-decoration: line-through;
+            font-size: 11px;
+            font-weight: normal;
         }
 
         .cart-quantity-controls {
@@ -1741,6 +1777,17 @@
             font-size: 14px;
             font-weight: 700;
             color: var(--brand-dark);
+            display: flex;
+            align-items: baseline;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+        .summary-old-price,
+        .summary-old-price del {
+            font-size: 12px;
+            color: #888;
+            font-weight: 500;
+            text-decoration: line-through;
         }
         .summary-totals {
             display: flex;
@@ -2077,10 +2124,121 @@
             document.getElementById('searchOverlay').classList.remove('active');
             document.body.style.overflow = '';
         }
+        let allFetchedProducts = [];
+        try {
+            const cached = localStorage.getItem('am_products_cache');
+            if (cached) allFetchedProducts = JSON.parse(cached) || [];
+        } catch(e) {}
+
+        function convertDriveLink(url, size = 'w400') {
+            if (!url) return '';
+            if (url.includes('drive.google.com') || url.includes('googleusercontent.com')) {
+                const idMatch = url.match(/id=([^&]+)/) || url.match(/\/d\/([^/]+)/);
+                if (idMatch && idMatch[1]) {
+                    return `https://drive.google.com/thumbnail?id=${idMatch[1]}&sz=${size}`;
+                }
+            }
+            return url;
+        }
+
+        function getProductPriceInfo(product) {
+            if (!product) return { regularPrice: 0, salePrice: 0, currentPrice: 0, originalPrice: 0, hasDiscount: false, discountPercent: 0 };
+            const parseNum = (val) => {
+                if (val === undefined || val === null) return 0;
+                const cleaned = String(val).replace(/[^0-9.]/g, '');
+                const num = parseFloat(cleaned);
+                return isNaN(num) ? 0 : num;
+            };
+            const getField = (exactKeys, fallbackKeywords) => {
+                for (const k of exactKeys) {
+                    if (product[k] !== undefined && product[k] !== null && String(product[k]).trim() !== '') return product[k];
+                }
+                const objKeys = Object.keys(product);
+                for (const word of fallbackKeywords) {
+                    const foundKey = objKeys.find(k => k.toLowerCase().includes(word.toLowerCase()));
+                    if (foundKey && product[foundKey] !== undefined && product[foundKey] !== null && String(product[foundKey]).trim() !== '') return product[foundKey];
+                }
+                return '';
+            };
+            const regularVal = getField(['Regular Price (Rs.)', 'Regular Price', 'price'], ['regular price']) || product['price'] || '';
+            const saleVal = getField(['Discounted/Sale Price (Rs.)', 'Discounted Price (Rs.)', 'Sale Price (Rs.)', 'Discounted/Sale Price', 'Discounted Price', 'Sale Price'], ['discounted', 'sale price']);
+            const regular = parseNum(regularVal);
+            const sale = parseNum(saleVal);
+            const hasDiscount = sale > 0 && regular > 0 && sale < regular;
+            const currentPrice = hasDiscount ? sale : (regular > 0 ? regular : sale);
+            const originalPrice = hasDiscount ? regular : 0;
+            const discountPercent = hasDiscount ? Math.round(((regular - sale) / regular) * 100) : 0;
+            return { regularPrice: regular, salePrice: sale, currentPrice, originalPrice, hasDiscount, discountPercent };
+        }
+
+        function formatPriceHTML(product, context = 'search') {
+            const info = getProductPriceInfo(product);
+            if (info.currentPrice <= 0 && info.regularPrice <= 0) return '';
+            if (info.hasDiscount) {
+                return `
+                    <span class="search-price-current">Rs. ${info.currentPrice.toLocaleString()}</span>
+                    <span class="search-price-old"><del>Rs. ${info.originalPrice.toLocaleString()}</del></span>
+                    <span class="search-price-discount">${info.discountPercent}% OFF</span>
+                `;
+            }
+            return `<span class="search-price-current">Rs. ${info.currentPrice.toLocaleString()}</span>`;
+        }
+
+        function handleSearch(query) {
+            const status = document.getElementById('searchStatus');
+            const grid = document.getElementById('searchResultsGrid');
+            const clearBtn = document.getElementById('clearSearchBtn');
+            const trimmed = query.trim().toLowerCase();
+            if (!trimmed) {
+                if (clearBtn) clearBtn.style.display = 'none';
+                if (status) status.innerText = 'Type something to search our collection...';
+                if (grid) grid.innerHTML = '';
+                return;
+            }
+            if (clearBtn) clearBtn.style.display = 'block';
+            const results = allFetchedProducts.filter(p => {
+                const title = (p['Product Title'] || p['title'] || '').toLowerCase();
+                const desc = (p['Product Description'] || p['description'] || '').toLowerCase();
+                const cat = (p['Category'] || p['category'] || '').toLowerCase();
+                return title.includes(trimmed) || desc.includes(trimmed) || cat.includes(trimmed);
+            });
+            if (results.length === 0) {
+                if (status) status.innerText = `No products found matching "${query}"`;
+                if (grid) grid.innerHTML = '';
+                return;
+            }
+            if (status) status.innerText = `Found ${results.length} product${results.length > 1 ? 's' : ''}:`;
+            let html = '';
+            results.forEach(product => {
+                const title = product['Product Title'] || product['title'] || 'Product';
+                const priceHTML = formatPriceHTML(product, 'search');
+                const cat = product['Product Category'] || product['Category'] || product['category'] || 'Leather Goods';
+                const rawImg = product['Main Product Image  (Only 1)'] || product['image'] || '';
+                const imgUrl = convertDriveLink(rawImg, 'w400') || 'media/product_1.webp';
+                html += `
+                    <div class="search-item-card" onclick="window.location.href='shop.html'">
+                        <div class="search-item-thumb">
+                            <img src="${imgUrl}" alt="${title}" onerror="this.onerror=null; this.src='media/product_1.webp';">
+                        </div>
+                        <div class="search-item-info">
+                            <span class="search-item-cat">${cat}</span>
+                            <h4 class="search-item-title">${title}</h4>
+                            <div class="search-item-price">${priceHTML}</div>
+                        </div>
+                        <div class="search-item-arrow">
+                            <i class="fas fa-chevron-right"></i>
+                        </div>
+                    </div>
+                `;
+            });
+            if (grid) grid.innerHTML = html;
+        }
+
         function clearSearch() {
             const input = document.getElementById('searchInput');
             input.value = '';
             document.getElementById('clearSearchBtn').style.display = 'none';
+            handleSearch('');
             input.focus();
         }
         function proceedToCheckout() {
@@ -2120,12 +2278,16 @@
             let total = 0;
             cartArray.forEach((item, idx) => {
                 total += (item.price * item.quantity);
+                const hasItemDiscount = item.originalPrice && item.originalPrice > item.price;
+                const strikeHTML = hasItemDiscount
+                    ? `<span class="cart-item-old-price"><del>Rs. ${item.originalPrice.toLocaleString()}</del></span>`
+                    : '';
                 html += `
                     <div class="cart-item">
                         <img src="${item.image}" alt="${item.title}">
                         <div class="cart-item-details">
                             <div class="cart-item-title">${item.title}</div>
-                            <div class="cart-item-price">Rs. ${item.price} x ${item.quantity}</div>
+                            <div class="cart-item-price">Rs. ${item.price.toLocaleString()} ${strikeHTML} x ${item.quantity}</div>
                             <div class="cart-quantity-controls">
                                 <button class="qty-btn" onclick="changeQuantity(${idx}, -1)">-</button>
                                 <span class="cart-item-qty">${item.quantity}</span>
@@ -2163,17 +2325,28 @@
             container.style.gridTemplateColumns = "";
 
             let subtotal = 0;
+            let totalSavings = 0;
             let itemsHtml = '';
             cartArray.forEach(item => {
                 const itemTotal = item.price * item.quantity;
                 subtotal += itemTotal;
+                const hasItemDiscount = item.originalPrice && item.originalPrice > item.price;
+                if (hasItemDiscount) {
+                    totalSavings += (item.originalPrice - item.price) * item.quantity;
+                }
+                const strikeText = hasItemDiscount
+                    ? `<span class="summary-old-price"><del>Rs. ${(item.originalPrice * item.quantity).toLocaleString()}</del></span>`
+                    : '';
                 itemsHtml += `
                     <div class="summary-item">
                         <img src="${item.image}" alt="${item.title}">
                         <div class="summary-details">
                             <div class="summary-title">${item.title}</div>
                             <div class="summary-meta">Qty: ${item.quantity}</div>
-                            <div class="summary-price">Rs. ${itemTotal.toLocaleString()}</div>
+                            <div class="summary-price">
+                                <span>Rs. ${itemTotal.toLocaleString()}</span>
+                                ${strikeText}
+                            </div>
                         </div>
                     </div>
                 `;
@@ -2184,6 +2357,12 @@
             const grandTotal = subtotal + shippingCost;
             
             const shippingText = isFreeShipping ? '<span>Free</span>' : '<span>Rs. 250</span>';
+            const savingsRow = totalSavings > 0
+                ? `<div class="summary-row" style="color: #27ae60; font-weight: 600;">
+                       <span><i class="fas fa-tag"></i> Discount Savings</span>
+                       <span>-Rs. ${totalSavings.toLocaleString()}</span>
+                   </div>`
+                : '';
 
             container.innerHTML = `
                 <!-- Left Form Column -->
@@ -2272,6 +2451,7 @@
                                 <span>Subtotal</span>
                                 <span>Rs. ${subtotal.toLocaleString()}</span>
                             </div>
+                            ${savingsRow}
                             <div class="summary-row shipping">
                                 <span>Shipping</span>
                                 ${shippingText}
@@ -2300,20 +2480,32 @@
             const paymentMethod = document.querySelector('input[name="paymentMethod"]:checked').value;
 
             let subtotal = 0;
+            let totalSavings = 0;
             let itemsText = '';
             cartArray.forEach((item, idx) => {
                 const itemTotal = item.price * item.quantity;
                 subtotal += itemTotal;
+                const hasItemDiscount = item.originalPrice && item.originalPrice > item.price;
+                if (hasItemDiscount) {
+                    totalSavings += (item.originalPrice - item.price) * item.quantity;
+                }
+                const discountNote = hasItemDiscount
+                    ? ` (Was: Rs. ${item.originalPrice.toLocaleString()} - You Save: Rs. ${(item.originalPrice - item.price).toLocaleString()}!)`
+                    : '';
                 let imageLinkText = item.image.startsWith('http') ? item.image : `${window.location.origin}/${item.image}`;
                 itemsText += `${idx + 1}. *${item.title}*
    Image Link: ${imageLinkText}
-   Qty: ${item.quantity} | Price: Rs. ${item.price.toLocaleString()} each
+   Qty: ${item.quantity} | Price: Rs. ${item.price.toLocaleString()} each${discountNote}
 `;
             });
 
             const shippingCost = subtotal >= 5000 ? 0 : 250;
             const shippingStr = shippingCost === 0 ? "FREE" : "Rs. 250";
             const grandTotal = subtotal + shippingCost;
+            const savingsText = totalSavings > 0
+                ? `🏷️ *Total Discount Saved:* Rs. ${totalSavings.toLocaleString()}
+`
+                : '';
 
             const message = 
 `🛍️ *NEW ORDER - A.M LEATHER WEAR*
@@ -2321,7 +2513,7 @@
 📦 *Order Items:*
 ${itemsText}────────────────────────
 💰 *Subtotal:* Rs. ${subtotal.toLocaleString()}
-🚚 *Delivery Fee:* ${shippingStr}
+${savingsText}🚚 *Delivery Fee:* ${shippingStr}
 💵 *Grand Total:* Rs. ${grandTotal.toLocaleString()}
 ────────────────────────
 👤 *Customer Information:*
