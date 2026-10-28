@@ -2160,7 +2160,7 @@
                 <div class="catalog-sort-wrapper">
                     <label for="catalogSortSelect"><i class="fas fa-arrow-down-short-wide"></i> Sort By:</label>
                     <select id="catalogSortSelect" class="catalog-sort-select" onchange="handleCatalogFilter()">
-                        <option value="featured">Featured / Default</option>
+                        <option value="featured">Featured (Newest First)</option>
                         <option value="price-low">Price: Low to High</option>
                         <option value="price-high">Price: High to Low</option>
                         <option value="name-asc">Name: A to Z</option>
@@ -2975,6 +2975,9 @@
                     const nameB = (b['Product Title'] || b['title'] || '').toLowerCase();
                     return nameB.localeCompare(nameA);
                 });
+            } else {
+                // Default / Featured: Reverse order so latest added product in Google Form is at the very top
+                sorted.reverse();
             }
 
             // Update Count display

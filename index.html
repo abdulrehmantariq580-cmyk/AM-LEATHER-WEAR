@@ -3262,11 +3262,11 @@
                 let sliderHTML = '';
                 let catalogHTML = '';
 
-                // Last 5 products for 3D Slider
-                const sliderProducts = products.slice(-5);
+                // 1. First 5 products from Google Form for Most Popular 3D Slider
+                const sliderProducts = products.slice(0, 5);
 
-                // Top 8 products for Catalog
-                const catalogProducts = products.slice(0, 8);
+                // 2. Explore Collection: Newest products first (from last added in Google Form up to the first)
+                const catalogProducts = [...products].reverse();
 
                 // 1. Render 3D Slider
                 sliderProducts.forEach((product) => {
