@@ -2531,6 +2531,41 @@
             };
         }
 
+        function getProductShippingFee(product) {
+            if (!product) return 250;
+            const exactKeys = [
+                'Shipping Fee (Rs.)',
+                'Shipping Fee',
+                'Shipping Charges',
+                'Shipping Fee (Rs)',
+                'Shipping',
+                'Delivery Fee (Rs.)',
+                'Delivery Fee',
+                'Delivery Charges'
+            ];
+            for (const k of exactKeys) {
+                if (product[k] !== undefined && product[k] !== null && String(product[k]).trim() !== '') {
+                    const val = String(product[k]).trim();
+                    if (val.toLowerCase() === 'free' || val === '0') return 0;
+                    const cleaned = val.replace(/[^0-9.]/g, '');
+                    const num = parseFloat(cleaned);
+                    if (!isNaN(num)) return num;
+                }
+            }
+            const objKeys = Object.keys(product);
+            for (const k of objKeys) {
+                const lower = k.toLowerCase();
+                if (lower.includes('shipping') || lower.includes('delivery')) {
+                    const val = String(product[k]).trim();
+                    if (val.toLowerCase() === 'free' || val === '0') return 0;
+                    const cleaned = val.replace(/[^0-9.]/g, '');
+                    const num = parseFloat(cleaned);
+                    if (!isNaN(num)) return num;
+                }
+            }
+            return 250;
+        }
+
         function formatPriceHTML(product, context = 'card') {
             const info = getProductPriceInfo(product);
             if (info.currentPrice <= 0 && info.regularPrice <= 0) return '';
@@ -2579,14 +2614,16 @@
             const originalPrice = priceInfo.hasDiscount ? priceInfo.originalPrice : 0;
             const rawImage = product['Main Product Image  (Only 1)'] || product['image'] || '';
             const image = convertDriveLink(rawImage) || 'media/product_1.webp';
+            const shippingFee = getProductShippingFee(product);
 
             const existingItem = cartArray.find(item => item.title === title);
             if (existingItem) {
                 existingItem.quantity += 1;
                 existingItem.price = price;
                 existingItem.originalPrice = originalPrice;
+                existingItem.shippingFee = shippingFee;
             } else {
-                cartArray.push({ title, price, originalPrice, image, quantity: 1 });
+                cartArray.push({ title, price, originalPrice, image, shippingFee, quantity: 1 });
             }
 
             saveAndSyncCart();
