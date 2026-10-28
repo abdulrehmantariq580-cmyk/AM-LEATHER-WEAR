@@ -2814,19 +2814,24 @@
             }) || null;
         }
 
+        function getItemShippingFee(item) {
+            if (item && item.shippingFee !== undefined && item.shippingFee !== null && !isNaN(Number(item.shippingFee))) {
+                return Number(item.shippingFee);
+            }
+            const matched = item ? findProductByTitle(item.title) : null;
+            if (matched) {
+                return getProductShippingFee(matched);
+            }
+            return 250;
+        }
+
         function getOrderShippingFee() {
             if (!cartArray || cartArray.length === 0) return 0;
-            const fees = cartArray.map(item => {
-                if (item.shippingFee !== undefined && item.shippingFee !== null && !isNaN(Number(item.shippingFee))) {
-                    return Number(item.shippingFee);
-                }
-                const matched = findProductByTitle(item.title);
-                if (matched) {
-                    return getProductShippingFee(matched);
-                }
-                return 250;
-            });
-            return fees.length > 0 ? Math.max(...fees) : 250;
+            return cartArray.reduce((total, item) => {
+                const fee = getItemShippingFee(item);
+                const qty = (item.quantity && item.quantity > 0) ? item.quantity : 1;
+                return total + (fee * qty);
+            }, 0);
         }
 
         function syncCartShippingFees() {
@@ -3039,12 +3044,14 @@
                 const strikeText = hasItemDiscount
                     ? `<span class="summary-old-price"><del>Rs. ${(item.originalPrice * item.quantity).toLocaleString()}</del></span>`
                     : '';
+                const itemFee = getItemShippingFee(item);
+                const feeText = itemFee > 0 ? ` • Shipping: Rs. ${(itemFee * item.quantity).toLocaleString()}` : '';
                 itemsHtml += `
                     <div class="summary-item">
                         <img src="${item.image}" alt="${item.title}">
                         <div class="summary-details">
                             <div class="summary-title">${item.title}</div>
-                            <div class="summary-meta">Qty: ${item.quantity}</div>
+                            <div class="summary-meta">Qty: ${item.quantity}${feeText}</div>
                             <div class="summary-price">
                                 <span>Rs. ${itemTotal.toLocaleString()}</span>
                                 ${strikeText}
@@ -3195,10 +3202,12 @@
                 const discountNote = hasItemDiscount
                     ? ` (Was: Rs. ${item.originalPrice.toLocaleString()} - You Save: Rs. ${(item.originalPrice - item.price).toLocaleString()}!)`
                     : '';
+                const itemFee = getItemShippingFee(item);
+                const feeText = itemFee > 0 ? ` | Shipping: Rs. ${(itemFee * item.quantity).toLocaleString()}` : '';
                 let imageLinkText = item.image.startsWith('http') ? item.image : `${window.location.origin}/${item.image}`;
                 itemsText += `${idx + 1}. *${item.title}*
    Image Link: ${imageLinkText}
-   Qty: ${item.quantity} | Price: Rs. ${item.price.toLocaleString()} each${discountNote}
+   Qty: ${item.quantity} | Price: Rs. ${item.price.toLocaleString()} each${feeText}${discountNote}
 `;
             });
 
